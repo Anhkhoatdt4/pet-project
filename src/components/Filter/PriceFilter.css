@@ -1,0 +1,10 @@
+.custom-range-slider{
+    .range-slider__thumb {
+        height: 12px;
+        width: 12px;
+    }
+      /* Chỉnh màu thanh trượt */
+    .range-slider__range{
+        height: 5px;
+    }
+  }

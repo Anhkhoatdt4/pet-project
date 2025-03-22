@@ -1,0 +1,41 @@
+{
+    "reviews": [
+      {
+        "name": "John Doe",
+        "rating": 5,
+        "comment": "Amazing website! The UI is very user-friendly and the product selection is great.",
+        "avatar": "https://example.com/avatars/john.jpg"
+      },
+      {
+        "name": "Emily Smith",
+        "rating": 5,
+        "comment": "Good experience overall, but I would love to see more product categories.",
+        "avatar": "https://example.com/avatars/emily.jpg"
+      },
+      {
+        "name": "Michael Brown",
+        "rating": 5,
+        "comment": "Fast shipping and excellent customer service. Highly recommended!",
+        "avatar": "https://example.com/avatars/michael.jpg"
+      },
+      {
+        "name": "Sophia Wilson",
+        "rating": 4.8,
+        "comment": "Decent website, but some pages take a while to load.",
+        "avatar": "https://example.com/avatars/sophia.jpg"
+      },
+      {
+        "name": "David Johnson",
+        "rating": 4.9,
+        "comment": "Great deals and offers, but the checkout process could be improved.",
+        "avatar": "https://example.com/avatars/david.jpg"
+      },
+      {
+        "name": "Olivia Martinez",
+        "rating": 5,
+        "comment": "I love the product variety and the filtering options. Shopping here is so easy!",
+        "avatar": "https://example.com/avatars/olivia.jpg"
+      }
+    ]
+  }
+  

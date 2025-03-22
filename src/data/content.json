@@ -1,0 +1,588 @@
+{
+    "section": [
+        {
+            "title": "Categories For Men",
+            "data": [
+                {
+                    "title": "Hoodies & Jeans",
+                    "description": "Explore our collection!",
+                    "imagePath": "./images/category-men.jpg",
+                    "actionArrow": true
+                },
+                {
+                    "title": "Sneakers",
+                    "description": "Trendy & comfortable!",
+                    "imagePath": "./images/category-men-sneaker.jpg"
+                },
+                {
+                    "title": "Jackets",
+                    "description": "Stay warm in style!",
+                    "imagePath": "./images/category-men-jacket.jpg"
+                },
+                {
+                    "title": "Accessories",
+                    "description": "Complete your look!",
+                    "imagePath": "./images/category-men-watch.jpg"
+                }
+            ]
+        },
+        {
+            "title": "Categories For Women",
+            "data": [
+                {
+                    "title": "Dresses",
+                    "description": "Elegant & beautiful!",
+                    "imagePath": "./images/category-women-dresses.jpg"
+                },
+                {
+                    "title": "Heels",
+                    "description": "Step up your style!",
+                    "imagePath": "./images/category-women-heels.jpg"
+                },
+                {
+                    "title": "Bags",
+                    "description": "Stylish & practical!",
+                    "imagePath": "./images/category-women-bags.jpg"
+                },
+                {
+                    "title": "Jewelry",
+                    "description": "Add some sparkle!",
+                    "imagePath": "./images/category-women-jewelry.jpg"
+                }
+            ]
+        },
+        {
+            "title": "Categories For Kids",
+            "data": [
+                {
+                    "title": "T-Shirts",
+                    "description": "Cute & comfy!",
+                    "imagePath": "./images/category-kids-tshirts.jpg"
+                },
+                {
+                    "title": "Shoes",
+                    "description": "Perfect for playtime!",
+                    "imagePath": "./images/category-kids-shoes.jpg"
+                },
+                {
+                    "title": "Toys",
+                    "description": "Fun & educational!",
+                    "imagePath": "./images/category-kids-toys.jpg"
+                },
+                {
+                    "title": "Hats",
+                    "description": "Keep them stylish!",
+                    "imagePath": "./images/category-kids-hats.jpg"
+                }
+            ]
+        },
+        {
+            "title": "Categories For All",
+            "data": [
+                {
+                    "title": "Unisex Hoodies",
+                    "description": "Cozy for everyone!",
+                    "imagePath": "./images/category-unisex-hoodies.jpg"
+                },
+                {
+                    "title": "Sneakers",
+                    "description": "Stylish for all ages!",
+                    "imagePath": "./images/category-men-sneaker.jpg"
+                },
+                {
+                    "title": "Backpacks",
+                    "description": "Practical & trendy!",
+                    "imagePath": "./images/category-unisex-backpacks.jpg"
+                },
+                {
+                    "title": "Sunglasses",
+                    "description": "Protect your eyes in style!",
+                    "imagePath": "./images/category-unisex-sunglasses.jpg"
+                }
+            ]
+        }
+    ],
+    "footer":{
+        "items":[
+            {
+                "title":"Need Help",
+                "list":[
+                    {
+                        "label":"Contact Us",
+                        "path":"/contact-us"
+                    },
+                    {
+                        "label":"Track Order",
+                        "path":"/track-order"
+                    },
+                    {
+                        "label":"Returns & Refunds",
+                        "path":"/refunds"
+                    },
+                    {
+                        "label":"FAQ's",
+                        "path":"/faq"
+                    },
+                    {
+                        "label":"Career",
+                        "path":"/career"
+                    }
+                ]
+            },
+            {
+                "title":"Company",
+                "list":[
+                    {
+                        "label":"About Us",
+                        "path":"/about"
+                    },
+                    {
+                        "label":"Media",
+                        "path":"/media"
+                    }
+                ]
+            },
+            {
+                "title":"More Info",
+                "list":[
+                    {
+                        "label":"Term and Conditions",
+                        "path":"/terms-conditions"
+                    },
+                    {
+                        "label":"Privacy Policy",
+                        "path":"/policies"
+                    },
+                    {
+                        "label":"Shipping Policy",
+                        "path":"/policies"
+                    }
+                ]
+            },
+            {
+                "title":"Location",
+                "description":"Location Country"
+            }
+        ],
+        "copyright":"Copyright © 2024 ShopEase"
+    },
+    "categories": [
+    {
+      "id": 1,
+      "name": "Men",
+      "code": "MEN",
+      "path": "/men",
+      "description": "Men's Clothing",
+      "types": [
+        { "id": 1, "code": "JEANS", "name": "Jeans", "description": "Men's jeans" },
+        { "id": 2, "code": "SHIRTS", "name": "Shirts", "description": "Men's shirts" },
+        { "id": 3, "code": "SHORTS", "name": "Shorts", "description": "Men's shorts" },
+        { "id": 4, "code": "TSHIRTS", "name": "T-shirts", "description": "Men's t-shirts" },
+        { "id": 14, "code": "HOODIES", "name": "Hoodie's", "description": "Men's Hoodie" }
+      ],
+      "meta_data": {
+        "colors": ["Black", "White", "Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow", "Pink", "Green"],
+        "sizes": ["S", "M", "L", "XL", "XXL"]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Women",
+      "code": "WOMEN",
+      "path": "/women",
+      "description": "Women's Clothing",
+      "types": [
+        { "id": 5, "code": "DRESSES", "name": "Dresses" },
+        { "id": 6, "code": "CROPTOP", "name": "Crop Top" },
+        { "id": 7, "code": "SHORTS", "name": "Shorts" },
+        { "id": 8, "code": "JEANS", "name": "Jeans" },
+        { "id": 9, "code": "TSHIRTS", "name": "T-shirt" },
+        { "id": 10, "code": "SWEATSHIRT", "name": "Hoodie/Sweatshirt" },
+        { "id": 11, "code": "TOPS", "name": "Tops" },
+        { "id": 12, "code": "BOXERS", "name": "Boxers" },
+        { "id": 13, "code": "KURTIS", "name": "Kurtis" }
+      ],
+      "meta_data": {
+        "colors": ["Black", "White", "Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow", "Pink", "Green"],
+        "sizes": ["S", "M", "L", "XL", "XXL"]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Kids",
+      "code": "KID",
+      "path": "/kids",
+      "description": "Kids Clothing",
+      "types": [
+        { "id": 15, "code": "TSHIRTS", "name": "T-shirts", "description": "Kids' t-shirts" },
+        { "id": 16, "code": "SHORTS", "name": "Shorts", "description": "Kids' shorts" },
+        { "id": 17, "code": "DRESSES", "name": "Dresses", "description": "Kids' dresses" },
+        { "id": 18, "code": "JEANS", "name": "Jeans", "description": "Kids' jeans" }
+      ],
+      "meta_data": {
+        "colors": ["Black", "White", "Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow", "Pink", "Green"],
+        "sizes": ["S", "M", "L", "XL", "XXL"]
+      }
+    }
+  ],
+  "products":[
+      {
+        "id": 1,
+        "title": "Black Sweatshirt",
+        "description": "A classic and versatile white t-shirt designed for women who love both comfort and style. Crafted from high-quality, breathable fabric, this t-shirt is perfect for casual outings, layering under jackets, or pairing with jeans for a relaxed yet fashionable look.",
+        "category_id": 1,
+        "type_id": 10,
+        "brand": "Nike",
+        "price": 49.99,
+        "size": ["S", "M", "L"],
+        "color": ["Black","Blue","Purple", "Gray", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 20,
+        "thumbnail": "https://i.pinimg.com/736x/9a/f1/b7/9af1b7af7bf66153f9a17c3288423762.jpg",
+        "images": ["https://i.pinimg.com/236x/01/43/0b/01430bbd734c22bc701bdcc023518ca1.jpg",
+         "https://i.pinimg.com/236x/d2/d1/06/d2d10698aacdace29dbd79f1fc83e87a.jpg",
+         "https://i.pinimg.com/236x/17/3b/82/173b828fbcd20d627875f28d839a2ea4.jpg",
+         "https://i.pinimg.com/474x/78/96/e5/7896e534431c1cef560a9a2b1d41e138.jpg"
+         ],
+        "rating": 4.5
+      },
+      {
+        "id": 2,
+        "title": "White T-shirt",
+        "description": " Its soft texture and lightweight design make it ideal for all-day wear, ensuring maximum comfort and flexibility. Available in multiple sizes and colors, this essential wardrobe piece is a must-have for any season.",
+        "category_id": 1,
+        "type_id": 9,
+        "brand": "TrendyWear",
+        "price": 29.99,
+        "size": ["S", "M", "L"],
+        "color": ["White","Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 15,
+        "images": ["https://i.pinimg.com/236x/8a/a8/af/8aa8aff416d578920215a7d5d1c2a884.jpg",
+        "https://i.pinimg.com/236x/5a/f1/ed/5af1ed63319bda9e5471cdd8e428d1b3.jpg",
+        "https://i.pinimg.com/236x/bd/e2/da/bde2da3a780fa91e1b745d40349bf54a.jpg",
+        "https://i.pinimg.com/236x/28/1f/ea/281fea5c66b6b059acdb20ee5e00461e.jpg"
+        ],
+        "thumbnail": "https://images.pexels.com/photos/1311590/pexels-photo-1311590.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "rating": 4.5
+      },
+      {
+        "id": 3,
+        "title": "Purple Hoodie",
+        "description": "A cozy purple hoodie for women",
+        "category_id": 1,
+        "type_id": 10,
+        "brand": "Nike",
+        "price": 69.99,
+        "size": ["S", "M", "L"],
+        "color": ["Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 10,
+        "images": ["https://i.pinimg.com/474x/da/d2/ad/dad2adc621d018f7304e93a8b9310e24.jpg", "https://i.pinimg.com/236x/10/9f/90/109f90b9130028ffdd197cb16721dab8.jpg",
+        "https://i.pinimg.com/236x/47/bb/c8/47bbc8bec85d1f6cfb5824ff203448fc.jpg",
+          "https://i.pinimg.com/236x/45/66/f9/4566f9f796f847020648272833d8aae6.jpg"
+      ],
+        "thumbnail": "https://images.pexels.com/photos/7763191/pexels-photo-7763191.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "rating": 4.6
+      },
+      {
+        "id": 4,
+        "title": "Leaves Pattern White Dress",
+        "description": "Stay cool and stylish with this cozy crewneck sweatshirt, designed for everyday comfort. Crafted from soft fleece fabric, this sweatshirt offers a relaxed fit that makes it ideal for lounging, running errands, or layering over your favorite outfits. The ribbed cuffs and hem ensure a snug and secure fit, while the timeless crewneck design makes it easy to pair with jeans, leggings, or joggers. Whether you're heading out on a chilly day or staying in for a cozy night, this sweatshirt is the perfect blend of warmth and fashion.",
+        "category_id": 2,
+        "type_id": 5,
+        "brand": "SummerVibes",
+        "price": 79.99,
+        "size": ["S", "M", "L"],
+        "color": ["White", "Black" , "Purple", "Gray", "Navy", "Yellow"],
+        "discount": 5,
+        "images": ["https://i.pinimg.com/736x/1b/a5/27/1ba52710f54c00ffe72f913028efbad8.jpg", "https://i.pinimg.com/736x/9a/9c/4e/9a9c4e14747e244ea0570d4cb4b7327e.jpg"],
+        "thumbnail": "https://i.pinimg.com/736x/f1/17/52/f1175262ab237c59c27dbfe25fd9643e.jpg",
+        "rating": 4.7
+      },
+      {
+        "id": 5,
+        "title": "White Graphic Crop Top",
+        "description": "This trendy white graphic crop top is a perfect blend of style and comfort, designed to add a modern touch to your wardrobe. Made from soft, breathable fabric, it ensures maximum comfort throughout the day while providing a flattering fit. The stylish graphic print enhances its appeal, making it a great choice for casual outings, summer days, or layering under jackets and hoodies. Whether paired with high-waisted jeans, shorts, or skirts, this versatile crop top brings a chic and effortless look to any outfit.",
+        "category_id": 2,
+        "type_id": 9,
+        "brand": "TrendyWear",
+        "price": 39.99,
+        "size": ["S", "M", "L"],
+        "color": ["White","Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 10,
+        "images": ["https://i.pinimg.com/236x/22/7e/20/227e203f6fbbb6b0552508a7425ca681.jpg", "https://i.pinimg.com/236x/e1/8b/1c/e18b1cf906977b0a2b5bf7c642c118df.jpg"],
+        "thumbnail": "https://i.pinimg.com/236x/b3/04/4e/b3044ed57812e6536a175ababa697d3d.jpg",
+        "rating": 4.3
+      },
+      {
+        "id": 6,
+        "title": "Black Shorts",
+        "description": "Stay comfortable and stylish with these classic black shorts designed for women. Crafted from high-quality, lightweight fabric, these shorts offer exceptional breathability and flexibility, making them perfect for workouts, casual wear, or summer adventures. The sleek black design provides a timeless look that pairs well with any top, from graphic tees to crop tops or tank tops. Featuring an elastic waistband for a secure fit, these shorts provide all-day comfort whether you're at the gym, on a run, or simply lounging at home.",
+        "category_id": 2,
+        "type_id": 7,
+        "brand": "Nike",
+        "price": 34.99,
+        "size": ["S", "M", "L"],
+        "color": ["Black","Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 15,
+        "images": ["https://i.pinimg.com/736x/3d/a7/75/3da775dccb47eb15c775e30f39692629.jpg", "https://i.pinimg.com/736x/3b/da/47/3bda4734267068fcb55336331d129baf.jpg"],
+        "thumbnail": "https://i.pinimg.com/736x/c6/56/cf/c656cf40880ebe381b9311b454d7f9de.jpg",
+        "rating": 4.5
+      },
+      {
+        "id": 7,
+        "title": "Women's Skinny Jeans",
+        "description": "Upgrade your denim collection with these trendy women's skinny jeans, designed to provide both style and comfort. Made from premium stretch denim, these jeans hug your curves in all the right places while offering flexibility for easy movement. The high-waisted design enhances your silhouette, making them a flattering choice for any occasion. Whether you're dressing up with heels and a blouse or going for a casual look with sneakers and a tee, these skinny jeans are a versatile staple for every wardrobe.",
+        "category_id": 2,
+        "type_id": 8,
+        "brand": "ChicStyle",
+        "price": 59.99,
+        "size": ["S", "M", "L"],
+        "color": ["Blue","Purple", "Gray", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 10,
+        "images": ["https://i.pinimg.com/736x/04/7f/87/047f873f0f5ce162fec8d366cd024988.jpg", "https://i.pinimg.com/736x/dd/f9/27/ddf927bbad58db2e42c3563c4c92aa82.jpg"],
+        "thumbnail": "https://i.pinimg.com/736x/8d/26/10/8d261012ebb8db3689997e815d5bd7b1.jpg",
+        "rating": 4.8
+      },
+      {
+        "id": 8,
+        "title": "Crewneck Sweatshirt",
+        "description": "Stay warm and stylish with this cozy crewneck sweatshirt, designed for everyday comfort. Crafted from soft fleece fabric, this sweatshirt offers a relaxed fit that makes it ideal for lounging, running errands, or layering over your favorite outfits. The ribbed cuffs and hem ensure a snug and secure fit, while the timeless crewneck design makes it easy to pair with jeans, leggings, or joggers. Whether you're heading out on a chilly day or staying in for a cozy night, this sweatshirt is the perfect blend of warmth and fashion.",
+        "category_id": 2,
+        "type_id": 10,
+        "brand": "TrendyWear",
+        "price": 44.99,
+        "size": ["S", "M", "L"],
+        "color": ["Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 10,
+        "images": ["https://i.pinimg.com/736x/09/63/76/0963764c29381c95b978d7037968e4ff.jpg", "https://i.pinimg.com/736x/cd/66/56/cd6656e1e35e6e4aeba26c4175fd88c7.jpg"],
+        "thumbnail": "https://i.pinimg.com/736x/7c/db/7f/7cdb7feb74b526e7cc36a6a1d7ad2075.jpg",
+        "rating": 4.6
+      },
+      {
+        "id": 9,
+        "title": "Denim Shorts",
+        "description": "Crafted from premium-quality denim, these stylish blue jeans offer exceptional comfort, durability, and a modern fit. Ideal for both casual outings and semi-formal occasions, making them a versatile wardrobe essential",
+        "category_id": 2,
+        "type_id": 7,
+        "brand": "SummerVibes",
+        "price": 39.99,
+        "size": ["S", "M", "L"],
+        "color": ["Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 15,
+        "images": ["https://i.pinimg.com/736x/a2/94/0d/a2940d78e7508fd9306d963bc4e6979f.jpg", "https://i.pinimg.com/736x/cb/7a/c9/cb7ac96e6f182f99070d23cc2155cfa8.jpg"],
+        "thumbnail": "https://i.pinimg.com/736x/54/72/2a/54722ad0ca10f15215b090531514a55e.jpg",
+        "rating": 4.7
+      },
+      {
+        "id": 10,
+        "title": "Black Plain T-shirt",
+        "description": "Designed for maximum comfort, these lightweight and breathable gray shorts are perfect for active days, workouts, or just relaxing at home. Featuring a modern fit and soft fabric, they provide unrestricted movement and a stylish look.",
+        "category_id": 1,
+        "type_id": 9,
+        "brand": "Nike",
+        "price": 24.99,
+        "size": ["S", "M", "L"],
+        "color": ["Black","Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 10,
+        "images": ["https://i.pinimg.com/736x/79/b3/36/79b336f1ba80dbfa3d3cced25db6247f.jpg", "https://i.pinimg.com/736x/0d/21/6e/0d216ef8fadb522353686c9091250d48.jpg"],
+        "thumbnail": "https://i.pinimg.com/736x/82/8b/86/828b8659a2ef3be5ce450eb95ab6eaa2.jpg",
+        "rating": 4.5
+      },
+      {
+        "id": 11,
+        "title": "Blue Flower Print Crop Top",
+        "description": "Stay warm and stylish with this ultra-soft black hoodie, made from high-quality fabric that ensures all-day comfort. Its sleek design and cozy fit make it a perfect layering piece for any season, whether you're heading out or lounging at home.",
+        "category_id": 2,
+        "type_id": 9,
+        "brand": "TrendyWear",
+        "price": 34.99,
+        "size": ["S", "M", "L"],
+        "color": ["Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 15,
+        "images": ["https://i.pinimg.com/236x/0c/1f/35/0c1f35c8b04599fbc2db30387b99f1a5.jpg", "https://i.pinimg.com/736x/fd/e7/10/fde710d2cebe68cc88b1d1b5b4840f96.jpg"],
+        "thumbnail": "https://i.pinimg.com/736x/97/97/64/97976460213deae8459cb4d50d694799.jpg",
+        "rating": 4.3
+      },
+      {
+        "id": 12,
+        "title": "Black Crop Top",
+        "description": "Offering simplicity with a touch of style, this black plain t-shirt is a perfect choice for any occasion. Made from soft, breathable cotton fabric, it ensures all-day comfort while keeping you cool and relaxed. The modern fit enhances your silhouette, making it easy to pair with jeans, shorts, or layer under a jacket or shirt for a versatile and effortless look. Whether you're heading out for a casual day or lounging at home, this t-shirt delivers both comfort and fashion.",
+        "category_id": 2,
+        "type_id": 9,
+        "brand": "TrendyWear",
+        "price": 29.99,
+        "size": ["S", "M", "L"],
+        "color": ["Black","Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 10,
+        "images": ["https://i.pinimg.com/736x/16/56/1c/16561cac18f5417c4a1aee00eba8339b.jpg", "https://i.pinimg.com/736x/8c/f6/fd/8cf6fd9042673f4f79497f3840945433.jpg"],
+        "thumbnail": "https://i.pinimg.com/736x/14/94/07/1494079f774f79011c08a917437a13bc.jpg",
+        "rating": 4.2
+      },
+      {
+        "id": 13,
+        "title": "Black T-Shirt",
+        "description": "A timeless wardrobe essential, this black t-shirt is designed for men who appreciate both comfort and simplicity. Made from premium cotton fabric, it provides excellent breathability and a soft touch against the skin. The classic fit ensures ease of movement, making it a perfect choice for casual wear, workouts, or layering under jackets and hoodies. Whether you're dressing up or keeping it laid-back, this t-shirt will always be a go-to piece in your collection.",
+        "category_id": 1,
+        "type_id": 4,
+        "brand": "Nike",
+        "price": 24.99,
+        "size": ["M", "L", "XL"],
+        "color": ["Black","Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 10,
+        "images": [
+          "https://i.pinimg.com/736x/d6/09/e5/d609e54a48076cd7bd1f28d9bb1d2378.jpg",
+          "https://img-va.myshopline.com/image/store/1717485196487/191eac177bd340f0d31d8e624d8c95f5535546bf_713x.jpg?w=1024&h=1365&q=80"
+        ],
+        "thumbnail": "https://i.pinimg.com/736x/ec/aa/2f/ecaa2f92f9699272663b9bcd38ac4559.jpg",
+        "rating": 4.5
+      },
+      {
+        "id": 14,
+        "title": "White Hoodie",
+        "description": "Stay cozy and stylish with this comfortable white hoodie. Designed for everyday wear, it features a soft fleece interior that provides warmth without feeling too heavy. The relaxed fit allows for easy layering, making it a great choice for chilly days. Whether you're heading out for a casual outing, hitting the gym, or just relaxing at home, this hoodie delivers both style and functionality. The clean white design pairs effortlessly with any outfit, offering a fresh and modern look.",
+        "category_id": 1,
+        "type_id": 14,
+        "brand": "Adidas",
+        "price": 59.99,
+        "size": ["M", "L", "XL"],
+        "color": ["White","Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 15,
+        "images": [
+          "https://images.pexels.com/photos/31230957/pexels-photo-31230957/free-photo-of-chan-dung-phong-cach-c-a-chang-trai-tr-v-i-mai-toc-t-t.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          "https://images.pexels.com/photos/3771067/pexels-photo-3771067.jpeg"
+        ],
+        "thumbnail": "https://images.pexels.com/photos/3374291/pexels-photo-3374291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "rating": 4.7
+      },
+      {
+        "id": 15,
+        "title": "Blue Jeans",
+        "description": "Premium-quality blue jeans designed for men, offering a perfect balance of style, comfort, and durability. Ideal for casual and semi-formal wear.",
+        "category_id": 2,
+        "type_id": 1,
+        "brand": "Levis",
+        "price": 49.99,
+        "size": ["M", "L", "XL"],
+        "color": ["Blue","Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 20,
+        "images": [
+          "https://i.pinimg.com/736x/e7/c3/0d/e7c30d3e8ba1f31de3d01ca6e0926109.jpg",
+          "https://i.pinimg.com/736x/e7/c3/0d/e7c30d3e8ba1f31de3d01ca6e0926109.jpg"
+        ],
+        "thumbnail": "https://i.pinimg.com/736x/1b/6a/22/1b6a22bcbbc8a214719fe34d1ed32b1f.jpg",
+        "rating": 4.6
+      },
+      {
+        "id": 16,
+        "title": "Gray Shorts",
+        "description": "Lightweight and breathable gray shorts for men, crafted for all-day comfort. Perfect for workouts, lounging, or casual outings.",
+        "category_id": 1,
+        "type_id": 3,
+        "brand": "Puma",
+        "price": 29.99,
+        "size": ["M", "L", "XL"],
+        "color": ["Purple", "Gray", "Blue", "Red", "Orange", "Navy", "Grey", "Yellow"],
+        "discount": 10,
+        "images": [
+          "https://i.pinimg.com/736x/36/66/52/366652e67b923d4aaed5be3dd164b70f.jpg",
+          "https://i.pinimg.com/736x/f0/2d/94/f02d94e97f5f96e7c24de0d1c195d920.jpg"
+        ],
+        "thumbnail": "https://i.pinimg.com/736x/2e/b4/f4/2eb4f456043fc6db36f207020db27f53.jpg",
+        "rating": 4.4
+      },
+      {
+        "id": 17,
+        "title": "Black Hoodie",
+        "description": "Soft and cozy black hoodie for men, made from high-quality fabric. Offers warmth and a stylish look, making it a must-have for any season.",
+        "category_id": 1,
+        "type_id": 14,
+        "brand": "Adidas",
+        "price": 59.99,
+        "size": ["M", "L", "XL"],
+        "color": ["Black"],
+        "discount": 15,
+        "images": [
+          "https://i.pinimg.com/236x/03/20/db/0320db185f2962a1175a1ed0e31b84db.jpg",
+          "https://i.pinimg.com/236x/b2/f6/ff/b2f6ff7e56dbfa46468583f1ba977833.jpg",
+          "https://i.pinimg.com/236x/9e/b8/0c/9eb80c6767c917203234825698d64544.jpg"
+        ],
+        "thumbnail": "https://i.pinimg.com/736x/95/a6/c4/95a6c4ae71f64dca4d9e5083ca85cbc8.jpg",
+        "rating": 4.8
+      },
+      {
+        "id": 18,
+        "title": "Kids Graphic T-Shirt",
+        "description": "A fun and colorful graphic t-shirt for kids, made from soft and breathable cotton. Perfect for everyday wear and playtime.",
+        "category_id": 3,
+        "type_id": 18,
+        "brand": "H&M",
+        "price": 19.99,
+        "size": ["S", "M", "L"],
+        "color": ["Red", "Blue", "Yellow", "Green"],
+        "discount": 5,
+        "images": [
+          "https://i.pinimg.com/236x/7a/17/ba/7a17ba3cbeaa1858708ddbbe2cfd70ce.jpg",
+          "https://i.pinimg.com/236x/bb/af/ee/bbafee53b5e55e21e2587ee2a50e5d93.jpg",
+          "https://i.pinimg.com/236x/6c/cf/c5/6ccfc56cfa9f1719374b04bbb3f8c6c0.jpg"
+        ],
+        "thumbnail": "https://i.pinimg.com/736x/68/12/61/68126196ea56ab3870961af6ee26d3ce.jpg",
+        "rating": 4.6
+      },
+      {
+        "id": 19,
+        "title": "Kids Denim Shorts",
+        "description": "Comfortable and stylish denim shorts for kids. Made with high-quality fabric to ensure durability and easy movement.",
+        "category_id": 3,
+        "type_id": 18,
+        "brand": "Levis",
+        "price": 24.99,
+        "size": ["S", "M", "L"],
+        "color": ["Blue", "Light Blue", "Black"],
+        "discount": 10,
+        "images": [
+          "https://i.pinimg.com/236x/77/8e/a5/778ea530822b2baa719efefd909f3721.jpg",
+          "https://i.pinimg.com/236x/a5/73/9b/a5739b9fa191e57456194cfa8fe3be71.jpg",
+          "https://i.pinimg.com/236x/2e/d8/00/2ed800e6f40957dcc74e3824c65288c0.jpg"
+        ],
+        "thumbnail": "https://i.pinimg.com/236x/37/a4/b3/37a4b30193e73582723cf7c29d988fb1.jpg",
+        "rating": 4.7
+      },
+      {
+        "id": 20,
+        "title": "Kids Hoodie",
+        "description": "Warm and cozy hoodie for kids, featuring a fun design. Perfect for chilly days and casual outings.",
+        "category_id": 3,
+        "type_id": 16,
+        "brand": "Nike",
+        "price": 34.99,
+        "size": ["S", "M", "L"],
+        "color": ["Pink", "Blue", "Gray", "Black"],
+        "discount": 15,
+        "images": [
+          "https://i.pinimg.com/236x/0a/70/94/0a70943cfa9034666845e4fb1d396a0a.jpg",
+          "https://i.pinimg.com/236x/9d/d1/2e/9dd12e7b87a254f7bfb2ba68d1662bdd.jpg"
+        ],
+        "thumbnail": "https://i.pinimg.com/236x/2a/c8/e9/2ac8e9e9ba098198a40a2cf32ae6f042.jpg",
+        "rating": 4.8
+      },
+      {
+        "id": 21,
+        "title": "Kids Sneakers",
+        "description": "Lightweight and durable sneakers for kids, providing great comfort and support for daily activities.",
+        "category_id": 3,
+        "type_id": 15,
+        "brand": "Adidas",
+        "price": 39.99,
+        "size": ["28", "30", "32", "34"],
+        "color": ["White", "Black", "Blue", "Pink"],
+        "discount": 10,
+        "images": [
+          "https://i.pinimg.com/236x/a9/30/1a/a9301a1e797ca6315d9ff2933c2df975.jpg",
+          "https://i.pinimg.com/236x/50/68/ce/5068ce38a12cbc5b5d615dc06b358a65.jpg",
+          "https://i.pinimg.com/236x/5f/48/03/5f480322b0f288d512759c8ba450f452.jpg"
+        ],
+        "thumbnail": "https://i.pinimg.com/236x/d3/75/01/d375014d3792ae65e806d41ecff04996.jpg",
+        "rating": 4.9
+      }
+
+    ]
+}

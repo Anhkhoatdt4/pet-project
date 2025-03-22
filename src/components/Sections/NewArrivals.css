@@ -1,0 +1,15 @@
+.react-slider-custom-item {
+    max-width: 260px;
+    img {
+        height: 220px;
+    }
+}
+
+.react-multiple-carousel__arrow.react-multiple-carousel__arrow--right{
+    margin-right: -50px;
+    margin-top: -80px;
+}
+
+.react-multiple-carousel__arrow--left{
+    margin-top: -80px;
+}
