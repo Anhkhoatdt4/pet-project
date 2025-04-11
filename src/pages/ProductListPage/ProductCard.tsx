@@ -11,6 +11,7 @@ interface ProductCardProps {
   rating: number;
   brand: string;
   thumbnail: string;
+  slug: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -22,10 +23,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
   rating,
   brand,
   thumbnail,
+  slug
 }) => {
   return (
     <div className='flex flex-col hover:scale-105 relative gap-2 w-[320px]'>
-        <NavLink to={`/product/${id}`}>
+        <NavLink to={`/product/${slug}`}>
             <img className={`h-[320px] w-[280px] border rounded-lg block cursor-pointer object-cover`} src={thumbnail}
             alt={title} />
         </NavLink>

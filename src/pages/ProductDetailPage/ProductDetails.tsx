@@ -1,4 +1,5 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import _ from "lodash";
 import { Link, useLoaderData } from "react-router-dom";
 import CumbTrail from "~/components/CumbTraill/CumbTrail";
 import SizeFilter from "~/components/Filter/SizeFilter";
@@ -9,6 +10,8 @@ import { CartIcon, SvgCloth, SvgShipping, SvgReturn, SvgCreditCard } from "~/com
 import SectionHeading from "~/components/Sections/SectionHeading/SectionHeading";
 import ProductCard from "../ProductListPage/ProductCard";
 import Reviewer from "~/components/Review/Reviewer";
+import { useSelector } from "react-redux";
+import { getAllProducts } from "~/api/fetchProducts";
 
 const extraSections = [
   {
@@ -30,56 +33,66 @@ const extraSections = [
 ]
 
 const ProductDetails = () => {
-  const { product } = useLoaderData();
-  console.log("product " , product.title , product?.category_id );
+  const product = useLoaderData() as any;
+  console.log("product " , product.name , product?.categoryId );
   
+  const [similarProduct, setSimilarProduct] = useState([]);
+  const categories = useSelector((state: { categoryState: { categories: any[] } }) => state?.categoryState?.categories);
   const [image, setImage] = useState<string | undefined>();
 
   const productCategory = useMemo(() => {
-    return content.categories.find(
-      (category) => category?.id === product?.category_id
-    );
+    return categories?.find((category) => category?.id === product?.categoryId);
   }, [product]);
 
   const [cumbTrail, setCumbTrail] = useState<{ title: string; path: string }[]>(
     []
   );
 
-  const similarProducts = useMemo(() => {
-    return content?.products?.filter(
-      (item) => item?.type_id === product?.type_id && item?.id !== product?.id
-    );
-  }, [product]);
+  const colors = useMemo(()=>{
+    const colorSet = _.uniq(_.map(product?.variants,'color'));
+    return colorSet
 
+  },[product]);
+
+  const sizes = useMemo(() => {
+    const SizeSet= _.uniq(_.map(product?.variants,'size'));
+    return SizeSet
+  },[product])
+  useEffect(() => {
+    getAllProducts(product?.categoryId, product?.categoryTypeId).then((res) => {
+      const excludedProduct = res.result?.filter((item : any)=> item?.id !== product?.id);
+      console.log("Products fetched successfully:", excludedProduct);
+      setSimilarProduct(excludedProduct);
+    }).catch((error) => {
+      console.error("Error fetching products:", error);
+    })
+  }, [product?.categoryId, product?.categoryTypeId, product?.id]);
 
 
   useEffect(() => {
     console.log("component rerender");
     
-    setImage( product?.thumbnail ?? (product?.images?.[0]?.startsWith("http") ? product.images[0] : ""));
+    setImage(product?.thumbnail);
     setCumbTrail([]);
     const arrayLink: { title: string; path: string }[] = [
       { title: "Shop", path: "/" },
       {
         title: productCategory?.name as string,
-        path: productCategory?.path as string,
+        path: productCategory?.name as string,
       },
     ];
-  
-    const productType = productCategory?.types?.find(
-      (item) => item.id === product?.type_id
-    );
-
+    const productType = productCategory?.categoryTypes?.find((item : any) => item?.id === product?.categoryTypeId);
     if (productType) {
       arrayLink.push({
-        title: productType.name,
-        path: productType.name,
-      });
+        title: productType?.name,
+        path: productType?.name
+      })
     }
-    console.log("array Link" , arrayLink);
-    
     setCumbTrail(arrayLink);
   }, [productCategory, product]);
+
+    const addItemToCart = useCallback(()=>{
+    },[]);
 
   return (
     <>
@@ -88,15 +101,15 @@ const ProductDetails = () => {
         <div className="flex flex-col md:flex-row lg:ml-[70px] gap-4">
           <div className=" sm:w-[80%] md:w-[25%] sm:ml-8 flex justify-center items-center">
             <div className="flex sm:flex-row md:flex-col gap-2 md:gap-5 sm:gap-7">
-              {[product?.thumbnail, ...product?.images].map(
-                (img: string, index: number) => (
+              {product?.productResources?.map(
+                (item : any, index: number) => (
                   <button
                     key={index}
                     className="rounded-lg w-fit p-1"
-                    onClick={() => setImage(img)}
+                    onClick={() => setImage(item?.url)}
                   >
                     <img
-                      src={img}
+                      src={item?.url}
                       className="h-[75px] w-[70px] bg-cover object-cover bg-center rounded-lg border-blue-900"
                       alt={"sample-" + index}
                     />
@@ -108,7 +121,7 @@ const ProductDetails = () => {
           <div className="w-full md:w-[80%] lg:w-[95%] flex justify-start ">
             <img
               src={image}
-              alt={product.title}
+              alt={product?.name}
               className="h-full w-full object-cover cursor-pointer border rounded-lg max-h-[500px]"
             />
           </div>
@@ -117,7 +130,7 @@ const ProductDetails = () => {
 
       <div className="w-full md:w-[50%] flex flex-col justify-start lg:mr-[240px] gap-2">
         <CumbTrail links={cumbTrail} />
-        <p className="text-3xl pt-2">{product?.title}</p>
+        <p className="text-3xl pt-2">{product?.name}</p>
         <StarRating rating={product.rating} />
         <div className="flex flex-col gap-1">
           <div className="flex gap-2 justify-start mt-1">
@@ -132,11 +145,11 @@ const ProductDetails = () => {
             </Link>
           </div>
           <div className="flex ml-0 mt-2">
-            <SizeFilter sizes={product.size} hiddenTitle={true} />
+            <SizeFilter sizes={sizes} hiddenTitle={true} multi={false} />
           </div>
           <div className="mt-[-21px]">
             <p className="text-[16px] font-medium mb-2">Colours Available</p>
-            <ProductColor colors={product.color}></ProductColor>
+            <ProductColor colors={colors}></ProductColor>
           </div>
           <div className="flex mt-1 items-center border-b-2 border-gray-300 pb-6">
             <button className="bg-black rounded-lg w-[150px] text-white flex items-center justify-center overflow-hidden pr-2">
@@ -167,21 +180,21 @@ const ProductDetails = () => {
         <div className="w-[100%] lg:w-[50%] md:w-[40%]">
           <SectionHeading title="Product Description" />
           <p className="ml-10 px-8 text-[16px] font-medium">
-            {product.description}
+            {product?.description}
           </p>
         </div>
       </div>
       <SectionHeading title={"Similar Products"} />
       <div className="flex px-10">
         <div className="pt-4 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-8 px-2 pb-10">
-          {similarProducts?.map((item, index) => (
+          {!similarProduct?.map((item : any, index : number) => (
             <ProductCard key={index} {...item} />
           ))}
-          {!similarProducts?.length && <p className="font-bold text-2xl ml-6">No Products Found!</p>}
+          {similarProduct?.length && <p className="font-bold text-2xl ml-6">No Products Found!</p>}
         </div>
       </div>
     </div>
-    <Reviewer></Reviewer>
+    {/* <Reviewer></Reviewer> */}
     </>
    
   );

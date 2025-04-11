@@ -7,13 +7,35 @@ import Category from './components/Sections/Categories/Category'
 import content from '~/data/content.json'
 import Footer from './components/Footer/Footer'
 import Reviewer from './components/Review/Reviewer'
+import { useDispatch, useSelector } from 'react-redux'
+import Spinner from './components/Spinner/Spinner'
+import { useEffect } from 'react'
+import { setLoading } from './store/features/common'
+import { fetchCategories } from './api/fetchCategories'
+import { loadCategories } from './store/features/category'
 
 function App() {
   const location = useLocation();
   const productPages = ["/mens", "/womens", "/kids","/product"];
-  
+  const isLoading = useSelector((state: { commonState: { isLoading: boolean } }) => state.commonState.isLoading);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setLoading(true));
+    fetchCategories().then((res) => {
+      console.log("Categories fetched successfully:", res);
+      const categoryArray = Object.values(res.result);
+      dispatch(loadCategories(categoryArray));
+    }).catch((error) => {
+      console.error("Error fetching categories:", error);
+    }).finally(() => {
+      dispatch(setLoading(false));
+    });
+  }, [dispatch])
+
   return (
-    <>
+    <> 
+    
       <div className="App">
         {/* Luôn hiển thị Navigation */}
         <Navigation />

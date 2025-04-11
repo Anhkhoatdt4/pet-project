@@ -174,7 +174,7 @@
       "path": "/men",
       "description": "Men's Clothing",
       "types": [
-        { "id": 1, "code": "JEANS", "name": "Jeans", "description": "Men's jeans" },
+        { "id": 1, "code": "JEANS", "name": "Jeans", "description": "  " },
         { "id": 2, "code": "SHIRTS", "name": "Shirts", "description": "Men's shirts" },
         { "id": 3, "code": "SHORTS", "name": "Shorts", "description": "Men's shorts" },
         { "id": 4, "code": "TSHIRTS", "name": "T-shirts", "description": "Men's t-shirts" },

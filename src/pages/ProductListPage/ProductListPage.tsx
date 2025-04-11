@@ -5,12 +5,40 @@ import PriceFilter from '~/components/Filter/PriceFilter';
 import SizeFilter from '~/components/Filter/SizeFilter';
 import content from '~/data/content.json';
 import ProductCard from './ProductCard';
+import { getAllProducts } from '~/api/fetchProducts';
+import { useSelector, useDispatch} from 'react-redux';
+import { setLoading } from '~/store/features/common';
+import { useEffect, useMemo, useState} from 'react';
 
 const ProductListPage = ({categoryType} : {categoryType: string}) => {
     const categories = content.categories;
-    const products = content.products;
     const categoryContent = categories?.find((category) => category.code === categoryType);
-    const productListItem = products?.filter((product) => product.category_id === categoryContent?.id);
+    const productListItem = content.products?.filter((product) => product.category_id === categoryContent?.id);
+    const dispatch = useDispatch();
+    const categoryData = useSelector((state: {categoryState: { categories: any[] } }) => state?.categoryState?.categories);
+    const category = useMemo(() => {
+        return categoryData?.find((categoryData) => categoryData?.code === categoryType);
+    }, [categoryType, categoryData]);
+    console.log('Value of categoryData:', categoryData);
+    
+    console.log("Category ", category);
+    
+    const [products, setProducts] = useState<Record<string, any>[]>([]);
+
+    useEffect(() => {  
+        dispatch(setLoading(true));
+        if (category?.id){
+         getAllProducts(category?.id).then((res) => {
+            console.log("Products fetched successfully:", res.result);
+            setProducts(res.result);
+        }).catch((error) => {
+            console.error("Error fetching products:", error);
+        }).finally(() => {
+            dispatch(setLoading(false));
+        });
+        }
+      
+    }, [category?.id, dispatch]);
 
     return (
     <div>
@@ -29,15 +57,26 @@ const ProductListPage = ({categoryType} : {categoryType: string}) => {
                     <hr></hr>
                     <ColorsFilter colors={categoryContent?.meta_data.colors || []} />
                     <hr />
-                    <SizeFilter sizes={categoryContent?.meta_data.sizes || []} />
+                    <SizeFilter sizes={categoryContent?.meta_data.sizes || []} multi={false} />
                 </div>
             </div>
 
             <div className='p-[10px] w-[80%]'>
-                <p className='text-black text-lg font-semibold underline decoration-black'>{categoryContent?.description}</p>
+                <p className='text-black text-lg font-semibold underline decoration-black'>{category?.description}</p>
                 <div className='pt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-                    {productListItem?.map((product, index) => (
-                        <ProductCard key={index} {...product} id={Number(product.id)} />
+                    {products?.map((product, index) => (
+                       <ProductCard
+                       key={product?.id + " " + index}
+                       id={Number(product.id)}
+                       title={product.title}
+                       description={product.description}
+                       price={product.price}
+                       discount={product.discount}
+                       rating={product.rating}
+                       thumbnail={product.thumbnail}
+                       brand={product.brand}
+                       slug={product.slug}
+                   />
                     ))}
                 </div>
             </div>
