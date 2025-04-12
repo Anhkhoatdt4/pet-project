@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: petproject
+  datasource:
+    url: jdbc:postgresql://ep-winter-mud-abyc7e9s-pooler.eu-west-2.aws.neon.tech:5432/neondb?sslmode=require
+    username: neondb_owner
+    password: npg_MPGHTQ85EfhW
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+server:
+  port: 8080
+  servlet:
+    context-path: /api
