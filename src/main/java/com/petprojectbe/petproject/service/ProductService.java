@@ -1,6 +1,6 @@
 package com.petprojectbe.petproject.service;
 
-import com.petprojectbe.petproject.dto.ProductDto;
+import com.petprojectbe.petproject.dto.request.ProductDto;
 import com.petprojectbe.petproject.entity.Product;
 
 import java.util.List;
