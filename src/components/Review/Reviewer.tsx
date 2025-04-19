@@ -8,7 +8,7 @@ const Reviewer = ({ color }: { color?: boolean }) => {
 
   return (
     <div className="mt-[-80px] px-[120px] py-[70px]" style={{ backgroundColor: bgColor }}>
-      <SectionHeading title={"Reviewer"} />
+      <SectionHeading title={"Reviewer"} className = {"ml-[-70px]"} />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 cursor-pointer">
         {reviewer.map((reviewer, index) => (
           <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:scale-105 hover:bg-gray-100">

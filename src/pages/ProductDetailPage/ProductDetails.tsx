@@ -34,7 +34,7 @@ const extraSections = [
 
 const ProductDetails = () => {
   const product = useLoaderData() as any;
-  console.log("product " , product.name , product?.categoryId );
+ // console.log("product " , product.name , product?.categoryId );
   
   const [similarProduct, setSimilarProduct] = useState([]);
   const categories = useSelector((state: { categoryState: { categories: any[] } }) => state?.categoryState?.categories);
@@ -101,7 +101,7 @@ const ProductDetails = () => {
         <div className="flex flex-col md:flex-row lg:ml-[70px] gap-4">
           <div className=" sm:w-[80%] md:w-[25%] sm:ml-8 flex justify-center items-center">
             <div className="flex sm:flex-row md:flex-col gap-2 md:gap-5 sm:gap-7">
-              {product?.productResources?.map(
+              {product?.productResources?.filter((item: any) => item?.url !== image)?.map(
                 (item : any, index: number) => (
                   <button
                     key={index}
@@ -187,10 +187,10 @@ const ProductDetails = () => {
       <SectionHeading title={"Similar Products"} />
       <div className="flex px-10">
         <div className="pt-4 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-8 px-2 pb-10">
-          {!similarProduct?.map((item : any, index : number) => (
+          {similarProduct?.map((item : any, index : number) => (
             <ProductCard key={index} {...item} />
           ))}
-          {similarProduct?.length && <p className="font-bold text-2xl ml-6">No Products Found!</p>}
+          {!similarProduct?.length && <p className="font-bold text-2xl ml-6">No Products Found!</p>}
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ import { loadCategories } from './store/features/category'
 function App() {
   const location = useLocation();
   const productPages = ["/mens", "/womens", "/kids","/product"];
-  const isLoading = useSelector((state: { commonState: { isLoading: boolean } }) => state.commonState.isLoading);
+  const isLoading = useSelector((state: { commonState: { loading: boolean } }) => state.commonState.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <> 
-    
+    {isLoading && <Spinner />}
       <div className="App">
         {/* Luôn hiển thị Navigation */}
         <Navigation />

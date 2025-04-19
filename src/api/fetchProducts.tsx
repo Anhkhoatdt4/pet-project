@@ -4,11 +4,13 @@ import axios from "axios";
 export const getAllProducts = async (id : string , typeId?: string) => {
     try {
         let url = `${API_BASE_URL}${API_URLS.GET_PRODUCTS}` + `?categoryId=${id}`;
-        console.log("URL", url);
+        
         if (typeId) {
             url += `&typeId=${typeId}`;
         }
+        console.log("URL", url);
         const response = await axios.get(url);
+        console.log("Response", response?.data);
         return response?.data;
     } catch (error) {
         console.error("Error fetching products:", error);

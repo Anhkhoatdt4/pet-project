@@ -8,7 +8,7 @@ export const loadProductBySlug = async ({ params }: any) => {
     store.dispatch(setLoading(true));
     const product = params?.slug ? await getProductBySlug(params.slug) : null;
     store.dispatch(setLoading(false));
-    console.log("Product loaded:", product?.result?.[0]);
+    // console.log("Product loaded:", product?.result?.[0]);
     
     return product?.result?.[0];
   } catch (error) {
