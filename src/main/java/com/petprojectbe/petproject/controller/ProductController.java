@@ -1,7 +1,7 @@
 package com.petprojectbe.petproject.controller;
 
 import com.petprojectbe.petproject.dto.ApiResponse;
-import com.petprojectbe.petproject.dto.ProductDto;
+import com.petprojectbe.petproject.dto.request.ProductDto;
 import com.petprojectbe.petproject.entity.Product;
 import com.petprojectbe.petproject.service.ProductService;
 import io.micrometer.common.util.StringUtils;

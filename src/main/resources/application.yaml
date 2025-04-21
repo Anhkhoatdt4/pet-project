@@ -3,8 +3,8 @@ spring:
     name: petproject
   datasource:
     url: jdbc:postgresql://ep-winter-mud-abyc7e9s-pooler.eu-west-2.aws.neon.tech:5432/neondb?sslmode=require
-    username: neondb_owner
-    password: npg_MPGHTQ85EfhW
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -13,7 +13,50 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_OAUTH2_CLIENT_ID}
+            client-secret: ${GOOGLE_OAUTH2_CLIENT_SECRET}
+            # redirect-uri: Sau khi người dùng đăng nhập qua Google, Google sẽ gửi mã xác thực về URL này, và ứng dụng Spring Boot sẽ sử dụng mã đó để yêu cầu token truy cập (access token) từ Google.
+            redirect-uri: http://localhost:8080/api/login/oauth2/code/google
+            # yêu cầu quyền truy cập vào profile và email của người dùng
+            scope: profile, email
+            # xác định grant type là authorization_code
+            authorization-grant-type: authorization_code
+            client-name: Google
+        provider:
+          google:
+            # Chuyển hướng người dùng đến trang đăng nhập của Google
+            authorization-uri: https://accounts.google.com/o/oauth2/auth
+            # URL để đổi mã xác thực (authorization code) lấy access token.
+            token-uri: https://oauth2.googleapis.com/token
+            # URL để lấy thông tin người dùng từ Google sau khi đã xác thực thành công.
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+jwt:
+  auth:
+    app: HEAVEN-CLOTHING/APP
+    secret_key:  ${JWT_SECRET_KEY}
+    expires_in: 3600
+
 server:
   port: 8080
   servlet:
     context-path: /api
+
+

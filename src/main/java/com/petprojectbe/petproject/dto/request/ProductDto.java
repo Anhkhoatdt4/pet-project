@@ -1,5 +1,7 @@
-package com.petprojectbe.petproject.dto;
+package com.petprojectbe.petproject.dto.request;
 
+import com.petprojectbe.petproject.dto.ProductResourceDto;
+import com.petprojectbe.petproject.dto.ProductVariantDto;
 import lombok.*;
 import java.math.BigDecimal;
 import java.util.List;
