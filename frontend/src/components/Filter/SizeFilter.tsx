@@ -1,28 +1,36 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const SizeFilter = ({
   sizes,
   hiddenTitle = false,
   multi = true,
+  onChange = () => {}
 }: {
   sizes: string[];
   hiddenTitle?: boolean;
   multi: boolean;
+  onChange : (selectedSizes: string[]) => void;
 }) => {
   const [appliedSizes, setAppliedSizes] = useState<string[]>([]);
   const onclickDiv = useCallback((size: string) => {
     setAppliedSizes((prev) => {
+      let newSizes: string[];
       if (multi) {
         if (prev.includes(size)) {
-          return prev.filter((item) => item !== size);
+          newSizes = prev.filter((item) => item !== size);
         } else {
-          return [...prev, size];
+          newSizes = [...prev, size];
         }
       } else {
-        return prev.includes(size) ? [] : [size];
+        newSizes = prev.includes(size) ? [] : [size];
       }
+      return newSizes;
     });
-  }, []);
+  }, [multi]);
+
+  useEffect(() => {
+    onChange(appliedSizes);
+  }, [appliedSizes, onChange]);
 
   return (
     <div className="flex flex-col mb-4 ml-1">
