@@ -1,0 +1,56 @@
+const [state, dispatch] = useReducer(reducerFn, initialState);
+state: là state hiện tại.
+
+dispatch: hàm để gửi hành động (action).
+
+reducerFn: function nhận state và action, trả về state mới.
+
+initialState: giá trị khởi tạo.
+
+Tiêu chí	useReducer (React)	createSlice (Redux Toolkit)
+Scope	Dùng trong component	Dùng cho global state (Redux store)
+Tối ưu cho	Logic cục bộ	Quản lý trạng thái toàn ứng dụng
+Tự sinh action + reducer	❌ Không	✅ Có
+Dễ test + tổ chức code	Trung bình	✅ Dễ chia file, tách chức năng
+🧠 Khi nào dùng createSlice?
+Khi bạn dùng Redux để quản lý global state (giỏ hàng, user login, theme...).
+
+Khi muốn code rõ ràng, chia module dễ bảo trì.
+
+
+Hook	Khi nào dùng?	Dùng để làm gì?
+useCallback	Khi bạn muốn ghi nhớ lại một hàm (function)	Tránh việc tạo lại function mới sau mỗi lần render (giúp tối ưu hiệu suất, nhất là khi truyền hàm xuống props cho component con).
+useMemo	Khi bạn muốn ghi nhớ lại một giá trị tính toán (value)	Tránh việc tính toán lại những phép tính nặng hoặc lặp lại không cần thiết sau mỗi render.
+Áp vào code của bạn:
+1. useCallback
+const onDeleteItem = useCallback(() => {
+  dispatch(deleteItemFromCartAction(deleteItem));
+  setModalIsOpen(false);  
+}, [deleteItem, dispatch]);
+Bạn dùng useCallback vì onDeleteItem là một function.
+
+Mỗi lần render, nếu deleteItem và dispatch không thay đổi, thì React không tạo lại hàm onDeleteItem mới.
+
+➔ Giúp tối ưu khi bạn truyền onDeleteItem xuống Modal.
+
+2. useMemo
+const subTotal = useMemo(() => {
+  let value = 0;
+  cartItems?.forEach(element => {
+    value += element?.subTotal;
+  });
+  return value?.toFixed(2);
+}, [cartItems]);
+Bạn dùng useMemo vì subTotal là một giá trị (number dạng text sau .toFixed(2)).
+
+Mỗi lần cartItems thay đổi, mới tính lại tổng tiền.
+
+Nếu cartItems không đổi, React xài lại giá trị cũ, không tính lại, tiết kiệm hiệu suất.
+
+👉 Vậy tổng kết nè:
+Bạn có...	Thì dùng...
+Một function cần ghi nhớ	useCallback
+Một value (giá trị) cần ghi nhớ	useMemo
+💬 Mẹo nhớ:
+useCallback => callback (hàm).
+useMemo => memory (giá trị nhớ).

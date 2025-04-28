@@ -7,6 +7,7 @@ import Login from './pages/Login/Login';
 import AuthenticationWrapper from './components/AuthenticationWrapper';
 import Register from '~/components/AuthRegister/Register';
 import OAuth2LoginCallback from './pages/Login/OAuth2LoginCallback';
+import Cart from './pages/Cart/Cart';
 
 const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         {
             path: '/oauth2/callback',
             element: <OAuth2LoginCallback/>,
+        },
+        {
+            path: '/cart-items',
+            element: <Cart/>
         }
     ]);
 

@@ -5,12 +5,14 @@ import AccountIcon from '../common/AccountIcon'
 import { CartIcon } from '../common/CartIcon'
 import { NavLink } from 'react-router-dom'
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { countCartItems } from '~/store/features/cart'
+import { useSelector } from 'react-redux'
 
 const Navigation = () => {
   const [scrolling, setScrolling] = React.useState(false);
   const [bgColor, setBgColor] = React.useState('rgb(49, 47, 47)')
   const [menuOpen , setMenuOpen] = React.useState(false);
-
+  const cartLength = useSelector(countCartItems);
   useEffect(() => {
       const handleScroll = () => {
           if (window.scrollY > 750) {
@@ -65,7 +67,11 @@ const Navigation = () => {
         <ul className='flex flex-wrap gap-4'>
           <li><button><Wishlist/></button></li>
           <li><button><AccountIcon/></button></li>
-          <li><NavLink to='/cart' className={ ({isActive}) => isActive ? 'active-link' : ''}><CartIcon bgColor={"transparent"}/></NavLink></li>
+          <li><NavLink to='/cart-items' className={ ({isActive}) => isActive ? 'active-link' : ''}><CartIcon bgColor={"transparent"}/></NavLink></li>
+          {cartLength > 0 && 
+          <div className='absolute ml-[150px] inline-flex items-center justify-center h-4 w-4 bg-white text-black font-bold rounded-full border-2 text-xs border-whit'>
+            {cartLength}
+          </div>}
         </ul>
       </div>
     </nav>

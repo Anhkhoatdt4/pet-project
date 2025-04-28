@@ -10,9 +10,10 @@ import { CartIcon, SvgCloth, SvgShipping, SvgReturn, SvgCreditCard } from "~/com
 import SectionHeading from "~/components/Sections/SectionHeading/SectionHeading";
 import ProductCard from "../ProductListPage/ProductCard";
 import Reviewer from "~/components/Review/Reviewer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "~/api/fetchProducts";
-
+import { addToCart } from "~/store/features/cart";
+import {addItemToCartAction} from '~/store/actions/cartAction.tsx'
 const extraSections = [
   {
     icon:<SvgCreditCard />,
@@ -91,8 +92,38 @@ const ProductDetails = () => {
     setCumbTrail(arrayLink);
   }, [productCategory, product]);
 
-    const addItemToCart = useCallback(()=>{
-    },[]);
+  const [selectedSize , setSelectedSize] = useState('');
+  const [error, setError] = useState('');
+  const dispatch = useDispatch();
+  const addItemToCart = useCallback(() => {
+    // console.log('Selected Size:', selectedSize);
+    if (!selectedSize){
+      setError('Please select size');
+    } else {
+      const selectedVariant = product?.variants?.find((variant:any) => variant?.size === selectedSize);
+      // console.log('selectedVariant ' , selectedVariant);
+      if (selectedVariant.stockQuantity > 0){
+        const cartItem = {
+          productId : product.id,
+          name : product.name,
+          thumbnail: product.thumbnail,
+          variant : selectedVariant,
+          quantity : 1,
+          subTotal : product?.price,
+          price:product?.price,
+        } 
+        dispatch(addItemToCartAction(cartItem));
+      } else {
+        setError('Out of Stock');
+      }
+    }
+  }, [selectedSize , dispatch , product]);
+
+  useEffect(() => {
+    if (selectedSize){
+      setError('');
+    }
+  }, [selectedSize])
 
   return (
     <>
@@ -145,14 +176,14 @@ const ProductDetails = () => {
             </Link>
           </div>
           <div className="flex ml-0 mt-2">
-            <SizeFilter sizes={sizes} hiddenTitle={true} multi={false} />
+            <SizeFilter sizes={sizes} hiddenTitle={true} multi={false} onChange={(values : any) => {setSelectedSize(values?.[0] ?? '')}} />
           </div>
           <div className="mt-[-21px]">
             <p className="text-[16px] font-medium mb-2">Colours Available</p>
             <ProductColor colors={colors}></ProductColor>
           </div>
           <div className="flex mt-1 items-center border-b-2 border-gray-300 pb-6">
-            <button className="bg-black rounded-lg w-[150px] text-white flex items-center justify-center overflow-hidden pr-2">
+            <button onClick={addItemToCart} className="bg-black rounded-lg w-[150px] text-white flex items-center justify-center overflow-hidden pr-2">
               <CartIcon bgColor={"black"} />
               Add to Cart
             </button>
@@ -160,8 +191,9 @@ const ProductDetails = () => {
               <p className="text-lg font-semibold text-black">
                 ${product.price.toFixed(2)}
               </p>
-            </div>
+            </div> 
           </div>
+          {error && <p className="text-lg text-red-600">{error}</p>}
           <div className="grid grid-cols-2 pt-4 gap-5">
                 {
                   extraSections.map((extraSection) => (
