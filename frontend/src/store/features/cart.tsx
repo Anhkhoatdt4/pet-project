@@ -34,7 +34,7 @@ const cartSlice = createSlice({
           },
         updateQuantity(state, action){
            return {
-            ...state , 
+            ...state, 
             cart : state?.cart?.map ((item : any) => {
                 if (item?.variant?.id === action?.payload?.variantId){
                     return {
@@ -47,11 +47,14 @@ const cartSlice = createSlice({
             })
            }
         },
+        clearCartAction(state) {
+            state.cart = [];
+            localStorage.removeItem('cart');
+        }
     }
-    
 })
 
-export const {addToCart , removeFromCart , updateQuantity} = cartSlice?.actions;
+export const {addToCart , removeFromCart , updateQuantity, clearCartAction} = cartSlice?.actions;
 export const countCartItems = (state : { cartState: CartState}) => state?.cartState?.cart?.length
 export const selectCartItems = (state : { cartState : CartState}) => state?.cartState?.cart ??  []
 export default cartSlice.reducer;
