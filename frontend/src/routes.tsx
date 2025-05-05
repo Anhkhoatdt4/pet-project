@@ -8,6 +8,12 @@ import AuthenticationWrapper from './components/AuthenticationWrapper';
 import Register from '~/components/AuthRegister/Register';
 import OAuth2LoginCallback from './pages/Login/OAuth2LoginCallback';
 import Cart from './pages/Cart/Cart';
+import AuthRoute from './components/AuthRoute/AuthRoute';
+import Account from './pages/Account/Account';
+import Checkout from './pages/Checkout/Checkout';
+import PaymentPage from './pages/PaymentPage/PaymentPage';
+import ConfirmPayment from './pages/ConfirmPayment/ConfirmPayment';
+import OrderSuccessPage from './pages/OrderSuccessPage/OrderSuccessPage';
 
 const router = createBrowserRouter([
     {
@@ -41,6 +47,26 @@ const router = createBrowserRouter([
         {
             path: '/cart-items',
             element: <Cart/>
+        },
+        {
+            path: '/account-details',
+            element: <AuthRoute><Account/></AuthRoute>
+        },
+        {
+            path: '/checkout',
+            element: <AuthRoute><Checkout/></AuthRoute>
+        },
+        {
+            path: '/payment',
+            element: <AuthRoute><PaymentPage/></AuthRoute>
+        },
+        {
+            path: '/confirmPayment',
+            element: <ConfirmPayment/>
+        },
+        {
+            path: 'orderConfirmed',
+            element: <OrderSuccessPage/>
         }
     ]);
 

@@ -1,4 +1,4 @@
-import { addToCart, removeFromCart, updateQuantity} from "~/store/features/cart"; 
+import { addToCart, removeFromCart, updateQuantity, clearCartAction} from "~/store/features/cart"; 
 import { Dispatch } from "redux";
 
 export const addItemToCartAction = (product : any) => {
@@ -35,4 +35,10 @@ export const deleteItemFromCart = (item : any) => {
   }
 }
 
-
+export const clearCart = () => {
+  return (dispatch: Dispatch) => {
+    console.log('cart has been removed');
+    dispatch(clearCartAction());
+    localStorage.removeItem('cart');
+  };
+};
