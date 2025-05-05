@@ -30,5 +30,13 @@ a:hover {
 .active-link{
   color: red; /* Màu chữ khi active */
   font-weight: bold; /* Đậm hơn */
-  border-bottom: 2px solid red; 
+  border-bottom: 3px solid red; 
+  padding-bottom: 4px;
 }
+
+a.active-link {
+  background-color: transparent;
+  border-radius: 8px;
+  display: inline-block;
+}
+

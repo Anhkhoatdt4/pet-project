@@ -35,6 +35,7 @@ const CheckoutForm = ({ userId, addressId }: CheckoutFormProps) => {
   const [orderResponse, setOrderResponse] = useState<OrderResponse | undefined>(
     undefined
   );
+  const loading = useSelector((state : {commonState : {isLoading : boolean}} ) => state.commonState.isLoading);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -65,6 +66,7 @@ const CheckoutForm = ({ userId, addressId }: CheckoutFormProps) => {
 
       if (elements){
         sendOrderRequest(orderRequest).then(async res => {
+          dispatch(setLoading(true))
           setOrderResponse(res);
           console.log("res " , res);
           
@@ -78,6 +80,7 @@ const CheckoutForm = ({ userId, addressId }: CheckoutFormProps) => {
             }
           }).then(res => {
             console.log("Response ",res);
+            dispatch(setLoading(false));
           }).catch(err => {
             throw new Error(err);
           }).finally(() => dispatch(setLoading(false)))
