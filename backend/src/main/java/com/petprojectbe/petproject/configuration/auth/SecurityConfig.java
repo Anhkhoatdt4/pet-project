@@ -32,7 +32,7 @@ public class SecurityConfig {
     private JwtTokenHandler jwtTokenHandler;
 
     private static final String[] PUBLIC_ENDPOINTS = {
-            "/product", "/category"
+            "/product", "/category", "/address"
     };
 
     private static final String[] publicApis= {

@@ -4,6 +4,7 @@ import com.petprojectbe.petproject.dto.request.AddressRequest;
 import com.petprojectbe.petproject.entity.Address;
 import com.petprojectbe.petproject.entity.User;
 import com.petprojectbe.petproject.repository.AddressRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -38,5 +40,10 @@ public class AddressService {
     public List<Address> getAllAddresses(Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
         return addressRepository.findByUser(user);
+    }
+
+    @Transactional
+    public void deleteAddress(UUID id){
+        addressRepository.deleteAddressesById(id);
     }
 }
