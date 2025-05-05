@@ -31,9 +31,9 @@ public class OAuth2Controller {
         if (user == null) {
             user = oAuth2Service.createUserOnOAuth2Login(oAuth2User, "google");
         }
-        System.out.println("debug0 "+user.getEmail());
+        System.out.println("debug0-oauth2controller "+user.getEmail());
         String token = jwtTokenHandler.generateToken(user.getUsername());
-        System.out.println("debug1 tao token roi "+token);
+        System.out.println("debug1-oauth2controller "+token);
         response.sendRedirect("http://localhost:5173/oauth2/callback?token=" + token);
     }
 }

@@ -59,4 +59,7 @@ server:
   servlet:
     context-path: /api
 
+stripe:
+  secret:${STRIPE_SECRET}
+
 
