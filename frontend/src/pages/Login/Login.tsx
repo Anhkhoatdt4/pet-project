@@ -74,7 +74,7 @@ const Login = () => {
     // <input name="username" value={state.username} onChange={handleChange} />
     // e.target.name  là giá trị của input  Trong ví dụ trên là "username"
     // e.target.value là giá trị mà người dùng nhập vào input đó vi dụ nếu người dùng gõ "john123", thì e.target.value === "john123"
-    console.log("name", name, " value", value);
+    // console.log("name", name, " value", value);
     formDispatch({
       type: "SET_FIELD",
       field: e.target.name as keyof State,

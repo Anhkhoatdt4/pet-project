@@ -14,6 +14,11 @@ import Checkout from './pages/Checkout/Checkout';
 import PaymentPage from './pages/PaymentPage/PaymentPage';
 import ConfirmPayment from './pages/ConfirmPayment/ConfirmPayment';
 import OrderSuccessPage from './pages/OrderSuccessPage/OrderSuccessPage';
+import path from 'path';
+import { element } from 'prop-types';
+import Profile from './pages/Account/Profile';
+import Order from './pages/Account/Order';
+import Setting from './pages/Account/Setting';
 
 const router = createBrowserRouter([
     {
@@ -50,7 +55,22 @@ const router = createBrowserRouter([
         },
         {
             path: '/account-details',
-            element: <AuthRoute><Account/></AuthRoute>
+            element: <AuthRoute><Account/></AuthRoute>,
+            children: [
+                {
+                    path: 'profile',
+                    element: <AuthRoute><Profile/></AuthRoute>
+                },
+                {
+                    path: 'orders',
+                    element: <AuthRoute><Order/></AuthRoute>
+                },
+                {
+                    path: 'settings',
+                    element: <AuthRoute><Setting/></AuthRoute>
+                },
+               
+            ]
         },
         {
             path: '/checkout',
