@@ -1,6 +1,78 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { log } from "util";
 import { addAddressAPI } from "~/api/address";
+
+interface Address {
+  id: string;
+  name: string | null;
+  street: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  phoneNumber: string;
+}
+
+interface ProductVariant {
+  id: string;
+  color: string;
+  size: string;
+  stockQuantity: number;
+}
+
+interface Resource {
+  id: string;
+  name: string;
+  url: string;
+  isPrimary: boolean;
+  type: string;
+}
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  brand: string;
+  rating: number;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  productVariants: ProductVariant[];
+  resources: Resource[];
+  newArrival: boolean;
+}
+
+interface OrderItem {
+  // id: string;
+  // itemPrice: number;
+  // productVariantId: string | null;
+  product: Product;
+  // quantity: number;
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  url: string;
+  slug: string;
+}
+
+interface Order {
+  id: string;
+  orderDate: string;
+  orderStatus: string;
+  totalAmount: number;
+  shipmentNumber: string;
+  expectedDeliveryDate: string;
+  orderItemDetails: OrderItem[];
+  address: Address;
+  status: string ;
+}
+// interface Order {
+//   id: string;
+//   amount: number;
+//   createdAt: string;
+//   orderStatus: "PENDING" | "SHIPPED" | "CANCELLED" | "DELIVERED";
+//   discount : number,
+// }
 
 interface Authority {
   id: string;
@@ -31,7 +103,7 @@ interface UserInfo {
   
   interface State {
     userInfo: UserInfo | null;
-    orders: any[];
+    orders: Order[];
   }
   export const initialState: State = {
     userInfo: {
@@ -65,10 +137,23 @@ const userSlice = createSlice({
           (address) => address?.id !== action.payload
         )
       }
+    },
+    loadOrders: (state:State, action: PayloadAction<Order[]>) => {
+      console.log('action - order ' , action.payload);
+      state.orders = action.payload;
+    },
+    cancelOrder: (state: State, action: PayloadAction<string>) => {
+      if (action.payload){
+        const order = state.orders.find(o => o.id === action.payload);
+        if (order) {
+          order.orderStatus = "CANCELLED"
+        }
+      }
     }
   },
 });
 
-export const {loadUserInfo , saveAddress , removeAddress} = userSlice.actions;
-export const selectUserInfo = (state : {userState : State}) => state.userState.userInfo
+export const {loadUserInfo , saveAddress , removeAddress, loadOrders , cancelOrder} = userSlice.actions;
+export const selectUserInfo = (state : {userState : State}) => state.userState.userInfo;
+export const selectAllOrders = (state : {userState: State}) : Order[] => state.userState.orders;
 export default userSlice.reducer;

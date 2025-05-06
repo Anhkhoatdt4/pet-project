@@ -66,7 +66,7 @@ const Navigation = () => {
       <div className='flex flex-nowrap items-center gap-4'>
         <ul className='flex flex-wrap gap-4'>
           <li><button><Wishlist/></button></li>
-          <li><NavLink to='/account-details' className={ ({isActive}) => isActive ? 'active-link' : ''}><AccountIcon/></NavLink></li>
+          <li><NavLink to='/account-details/profile' className={ ({isActive}) => isActive ? 'active-link' : ''}><AccountIcon/></NavLink></li>
           <li>
             <NavLink to='/cart-items' className={ ({isActive}) => isActive ? 'active-link' : ''}><CartIcon bgColor={"transparent"}/></NavLink>
           </li>
