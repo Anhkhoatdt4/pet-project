@@ -48,3 +48,32 @@ export const confirmPaymentAPI = async (data : any)=>{
         throw error;
     }
 }
+
+export const fetchOrderApi = async () => {
+    const url = API_AUTHENTICATION_URL + `/order/user`;
+    try {
+        const response = await axios (url, {
+            method: "GET",
+            headers : getHeadersToken()
+        });
+        return response?.data;
+    } catch (error) {
+        console.error("Error fetching fetchOrderApi:", error);
+        throw error;
+    }
+}
+
+export const cancelOrderAPI = async (id : string) => {
+    const url = API_AUTHENTICATION_URL + `/order/cancel?id=${id}`;
+    try{
+        const response = await axios (url , {
+            method: 'POST',
+            headers: getHeadersToken()
+        })
+        return response.data;
+    }
+    catch (error) {
+        console.error("Error fetching cancelOrderAPI:", error);
+        throw error;
+    }
+};

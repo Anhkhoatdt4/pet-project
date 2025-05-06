@@ -17,7 +17,7 @@ const Account = () => {
       dispatch(setLoading(true));
       getUserDetailInfo()
         .then((res) => {
-          console.log("res : " , res);
+          // console.log("res : " , res);
           dispatch(loadUserInfo(res));
         })
         .catch((err) => {
@@ -26,13 +26,13 @@ const Account = () => {
         })
         .finally(() => dispatch(setLoading(false)));
     }, [dispatch]);
-
+    
   return (
     <>
       <div className="flex flex-col min-h-screen">
         <Navigation />
         <div className="flex bg-white pt-[70px] mt-10">
-          <div className="flex-col flex w-[35%] items-center justify-center">
+          <div className="flex-col flex w-[35%] items-center justify-start">
             <img src="/images/logo-account.jpg" className="w-[155px] h-[155px] rounded-full">
             </img>
             <div className="flex flex-col items-center">

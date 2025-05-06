@@ -12,6 +12,7 @@ import { selectCartItems } from "~/store/features/cart";
 import { createOrderRequest } from "~/utils/order-utils";
 import { setLoading } from "~/store/features/common";
 import { sendOrderRequest } from "~/api/order";
+import Spinner from "~/components/Spinner/Spinner";
 
 interface CheckoutFormProps {
   userId: string;
@@ -35,10 +36,13 @@ const CheckoutForm = ({ userId, addressId }: CheckoutFormProps) => {
   const [orderResponse, setOrderResponse] = useState<OrderResponse | undefined>(
     undefined
   );
-  const loading = useSelector((state : {commonState : {isLoading : boolean}} ) => state.commonState.isLoading);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
+      if (!stripe || !elements) {
+        console.log("Stripe or Elements are not loaded yet");
+        setError("Stripe is not initialized. Please try again later.");
+      }
       console.log("Stripe:", stripe)
       console.log("Elements:", elements)
       event.preventDefault();
@@ -90,19 +94,19 @@ const CheckoutForm = ({ userId, addressId }: CheckoutFormProps) => {
     [addressId, dispatch, userId]
   );
   return (
-    <form
-      className="items-center p-2 mt-4 w-[620px] h-[320px]"
-      onSubmit={handleSubmit}
-    >
-      <PaymentElement />
-      <button
-        type="submit"
-        className="mt-3 w-[88px] h-[40px] border rounded-lg bg-black text-white font-bold hover:scale-105 hover:text-red-700 hover:bg-white duration-200 transition-all"
+        <form
+        className="items-center p-2 mt-4 w-[620px] h-[320px]"
+        onSubmit={handleSubmit}
       >
-        Pay Now
-      </button>
-      {error && <p className="text-sm pt-4 text-red-600">{error}</p>}
-    </form>
+        <PaymentElement />
+        <button
+          type="submit"
+          className="mt-3 w-[88px] h-[40px] border rounded-lg bg-black text-white font-bold hover:scale-105 hover:text-red-700 hover:bg-white duration-200 transition-all"
+        >
+          Pay Now
+        </button>
+        {error && <p className="text-sm pt-4 text-red-600">{error}</p>}
+      </form>
   );
 };
 
