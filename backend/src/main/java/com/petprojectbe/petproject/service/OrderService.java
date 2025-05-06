@@ -1,8 +1,10 @@
 package com.petprojectbe.petproject.service;
 
+import com.petprojectbe.petproject.dto.request.OrderItemDetail;
 import com.petprojectbe.petproject.dto.request.OrderItemRequest;
 import com.petprojectbe.petproject.dto.request.OrderRequest;
 import com.petprojectbe.petproject.dto.request.ProductDto;
+import com.petprojectbe.petproject.dto.response.OrderDetailsResponse;
 import com.petprojectbe.petproject.dto.response.OrderResponse;
 import com.petprojectbe.petproject.entity.*;
 import com.petprojectbe.petproject.repository.OrderRepository;
@@ -70,6 +72,7 @@ public class OrderService {
                 .map(orderItemRequest -> {
                     try {
                         Product product = productService.fetchProductById(orderItemRequest.getProductId());
+                        System.out.println("product in create Order " + product);
                         Double itemPrice = product.getPrice().doubleValue();
                         OrderItem orderItem = OrderItem
                                 .builder()
@@ -136,6 +139,64 @@ public class OrderService {
         }
         catch (Exception e){
             throw new Exception("PaymentIntent not found or missing metadata");
+        }
+    }
+
+    public List<OrderDetailsResponse> getOrderByUser (String name){
+        User user = (User) userDetailsService.loadUserByUsername(name);
+        List<Order> orders = orderRepository.findByUser(user);
+        return orders.stream().map(order -> {
+            return OrderDetailsResponse.builder()
+                    .id(order.getId())
+                    .orderDate(order.getOrderDate())
+                    .orderStatus(order.getOrderStatus())
+                    .address(order.getAddress())
+                    .expectedDeliveryDate(order.getExpectedDeliveryDate())
+                    .totalAmount(order.getTotalAmount())
+                    .shipmentNumber(order.getShipmentTrackingNumber())
+                    .orderItemDetails(getItemDetails(order.getOrderItems()))
+                    .build();
+        }).toList();
+    }
+
+    private List<OrderItemDetail> getItemDetails (List<OrderItem> orderItems){
+        return orderItems.stream().map(orderItem -> {
+            return OrderItemDetail.builder()
+                    .id(orderItem.getId())
+                    .product(orderItem.getProduct())
+                    .quantity(orderItem.getQuantity())
+                    .itemPrice(orderItem.getItemPrice())
+                    .productVariantId(orderItem.getProductVariantId())
+                    .build();
+        }).toList();
+    }
+
+    public OrderDetailsResponse getOrderById(UUID orderId, String username) {
+        User user = (User) userDetailsService.loadUserByUsername(username);
+        Order order = orderRepository.findByIdAndUser(orderId, user)
+                .orElseThrow(() -> new RuntimeException("Order not found or does not belong to user"));
+
+        return OrderDetailsResponse.builder()
+                .id(order.getId())
+                .orderDate(order.getOrderDate())
+                .orderStatus(order.getOrderStatus())
+                .address(order.getAddress())
+                .expectedDeliveryDate(order.getExpectedDeliveryDate())
+                .totalAmount(order.getTotalAmount())
+                .shipmentNumber(order.getShipmentTrackingNumber())
+                .orderItemDetails(getItemDetails(order.getOrderItems()))
+                .build();
+    }
+
+    public void cancelOrder(UUID id , Principal principal) throws Exception {
+        User user = (User) userDetailsService.loadUserByUsername(principal.getName());
+        Order order = orderRepository.findById(id).get();
+        if(user == null || order == null) {
+            throw new Exception("Cannot cancel this orded " + id);
+        }
+        else {
+            order.setOrderStatus(OrderStatus.CANCELLED);
+            orderRepository.save(order);
         }
     }
 }
