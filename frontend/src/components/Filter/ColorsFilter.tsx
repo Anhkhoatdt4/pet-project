@@ -1,6 +1,6 @@
 import{ useCallback, useState } from 'react'
 
-const colorSelector = {
+export const colorSelector = {
     "Black": "#252525",
     "White": "#FFFFFF",
     "Purple": "#511389",

@@ -19,6 +19,7 @@ import { element } from 'prop-types';
 import Profile from './pages/Account/Profile';
 import Order from './pages/Account/Order';
 import Setting from './pages/Account/Setting';
+import AdminPanel from './pages/AdminPanel/AdminPanel';
 
 const router = createBrowserRouter([
     {
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
         {
             path: 'orderConfirmed',
             element: <OrderSuccessPage/>
+        },
+        {
+            path: '/admin/*',
+            element: <AuthRoute><AdminPanel/></AuthRoute>
         }
     ]);
 

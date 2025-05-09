@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
+export const sizeSelector =["S","M","L","XL","XXL"]
+
 const SizeFilter = ({
   sizes,
   hiddenTitle = false,

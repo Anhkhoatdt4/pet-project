@@ -9,7 +9,8 @@ interface AuthRouteProps {
 const AuthRoute = ( {children} : AuthRouteProps) => {
     const navigate = useNavigate();
     useEffect(() => {
-        if (!isTokenValid){
+        if (!isTokenValid()){
+          console.log("Token không hợp lệ, chuyển hướng về /v1/login");
             navigate("/v1/login")
         }
     }, [navigate])

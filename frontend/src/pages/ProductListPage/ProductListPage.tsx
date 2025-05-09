@@ -29,8 +29,8 @@ const ProductListPage = ({categoryType} : {categoryType: string}) => {
         dispatch(setLoading(true));
         if (category?.id){
          getAllProducts(category?.id).then((res) => {
-            console.log("Products fetched successfully:", res.result);
-            setProducts(res.result);
+            console.log("Products fetched successfully:", res);
+            setProducts(res);
         }).catch((error) => {
             console.error("Error fetching products:", error);
         }).finally(() => {
@@ -72,7 +72,7 @@ const ProductListPage = ({categoryType} : {categoryType: string}) => {
                        description={product.description}
                        price={product.price}
                        discount={product.discount}
-                       rating={product.rating}
+                       rating={product?.rating}
                        thumbnail={product.thumbnail}
                        brand={product.brand}
                        slug={product.slug}
