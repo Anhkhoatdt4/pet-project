@@ -39,7 +39,6 @@ public class AuthController {
     public ResponseEntity<UserToken>login(@RequestBody LoginRequest loginRequest) {
         try {
             // unauthenticated(...) là một factory method để tạo một token chưa được xác thực, với isAuthenticated() == false.
-
             Authentication authentication = UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.getUserName(),loginRequest.getPassword());
             Authentication authenticationResponse = this.authenticationManager.authenticate(authentication);
             // Dòng này đưa authentication vào trong AuthenticationManager để thực hiện xác thực.

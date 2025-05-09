@@ -52,7 +52,7 @@ jwt:
   auth:
     app: HEAVEN-CLOTHING/APP
     secret_key:  ${JWT_SECRET_KEY}
-    expires_in: 3600
+    expires_in: 36000
 
 server:
   port: 8080

@@ -54,7 +54,7 @@ public class SecurityConfig {
                 )
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenHandler, userDetailsService), UsernamePasswordAuthenticationFilter.class);
-
+// addFilterBefor có nhiệm vuc thêm JwtAuthenticationFilter vào trước UsernamePasswordAuthenticationFilter trong chuỗi bộ lọc của Spring Security.
         // http.csrf(AbstractHttpConfigurer::disable) để tắt CSRF (Cross-Site Request Forgery) protection.
         // CSRF protection là một biện pháp bảo mật để ngăn chặn các cuộc tấn công từ xa bằng cách yêu cầu xác thực cho mỗi yêu cầu.
         // trước khi Spring Securit xác thực username,password (xử lý bởi UsernamePasswordAuthenticationFilter), JwtAuthenticationFilter kiểm tra xem yêu cầu có chứa token JWT hợp lệ không.

@@ -13,7 +13,7 @@ import java.util.List;
 public interface CategoryMapper {
 
     // Ánh xạ CategoryDto thành Category
-    @Mapping(source = "categoryTypeDtoList", target = "categoryTypes")
+    @Mapping(source = "categoryTypes", target = "categoryTypes")
     Category toEntity(CategoryDto categoryDto);
 
     List<CategoryType> toCategoryTypeList(List<CategoryDto> categoryDtoList);

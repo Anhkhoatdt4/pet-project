@@ -6,6 +6,7 @@ import com.petprojectbe.petproject.entity.Category;
 import com.petprojectbe.petproject.entity.CategoryType;
 import com.petprojectbe.petproject.mapper.CategoryMapper;
 import com.petprojectbe.petproject.repository.CategoryRepository;
+import com.petprojectbe.petproject.repository.CategoryTypeRepository;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class CategoryService {
+    CategoryTypeRepository categoryTypeRepository;
     CategoryRepository categoryRepository;
     CategoryMapper categoryMapper;
     public Category getCategory(UUID id) {
@@ -53,7 +55,7 @@ public class CategoryService {
         if (categoryDto.getDescription() != null) {
             category.setDescription(categoryDto.getDescription());
         }
-        List<CategoryTypeDto> typeDtos = Optional.ofNullable(categoryDto.getCategoryTypeDtoList()).orElse(new ArrayList<>());
+        List<CategoryTypeDto> typeDtos = Optional.ofNullable(categoryDto.getCategoryTypes()).orElse(new ArrayList<>());
         List<CategoryType> existingTypes = category.getCategoryTypes();
         if(existingTypes == null){
             existingTypes = new ArrayList<>();
@@ -97,5 +99,11 @@ public class CategoryService {
 
     public void deleteCategory(UUID categoryId) {
         categoryRepository.deleteById(categoryId);
+    }
+
+    public void deleteCategoryType(UUID categoryTypeId) {
+        CategoryType categoryType = categoryTypeRepository.findById(categoryTypeId)
+                .orElseThrow(() -> new RuntimeException("CategoryType not found"));
+        categoryTypeRepository.delete(categoryType);
     }
 }
