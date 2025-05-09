@@ -10,7 +10,7 @@ export const loadProductBySlug = async ({ params }: any) => {
     store.dispatch(setLoading(false));
     // console.log("Product loaded:", product?.result?.[0]);
     
-    return product?.result?.[0];
+    return product?.[0];
   } catch (error) {
     console.error("Error loading product by slug:", error);
   }

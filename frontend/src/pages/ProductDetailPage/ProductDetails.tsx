@@ -35,7 +35,7 @@ const extraSections = [
 
 const ProductDetails = () => {
   const product = useLoaderData() as any;
- // console.log("product " , product.name , product?.categoryId );
+ console.log("product " , product);
   
   const [similarProduct, setSimilarProduct] = useState([]);
   const categories = useSelector((state: { categoryState: { categories: any[] } }) => state?.categoryState?.categories);
@@ -61,7 +61,7 @@ const ProductDetails = () => {
   },[product])
   useEffect(() => {
     getAllProducts(product?.categoryId, product?.categoryTypeId).then((res) => {
-      const excludedProduct = res.result?.filter((item : any)=> item?.id !== product?.id);
+      const excludedProduct = res?.filter((item : any)=> item?.id !== product?.id);
       console.log("Products fetched successfully:", excludedProduct);
       setSimilarProduct(excludedProduct);
     }).catch((error) => {

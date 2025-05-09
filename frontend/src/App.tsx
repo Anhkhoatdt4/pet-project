@@ -24,8 +24,7 @@ function App() {
     dispatch(setLoading(true));
     fetchCategories().then((res) => {
       console.log("Categories fetched successfully:", res);
-      const categoryArray = Object.values(res.result);
-      dispatch(loadCategories(categoryArray));
+      dispatch(loadCategories(res));
     }).catch((error) => {
       console.error("Error fetching categories:", error);
     }).finally(() => {
