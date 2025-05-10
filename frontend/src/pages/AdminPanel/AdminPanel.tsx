@@ -131,9 +131,9 @@ const AdminPanel = () => {
     },
 
     delete: (resource: string, params: any) => {
-      console.log("resource:", resource);
+      // console.log("resource:", resource);
 
-      console.log("prams:", params);
+      // console.log("prams:", params);
 
       if (resource === "category") {
         console.log("prams-id:", params.id);
