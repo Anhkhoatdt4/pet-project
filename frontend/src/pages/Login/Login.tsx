@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { loginAPI } from "~/api/authentication/authentication";
 import { saveToken } from "~/utils/jwt-helper";
 import { signInWithGoogle } from "~/api/signIn/SignInWithGoogle";
+import { signInWithFacebook } from "~/api/signIn/SignInWithFacebook";
 // union type cho phép một biến có thể là nhiều kiểu dữ liệu khác nhau.
 type Action = {
   type: "SET_FIELD";
@@ -141,7 +142,7 @@ const Login = () => {
               />
               Continue with Google
             </button>
-            <button className="flex items-center justify-center gap-2 bg-blue-600 text-white px-5 py-3 rounded-md hover:bg-blue-700">
+            <button onClick={signInWithFacebook} className="flex items-center justify-center gap-2 bg-blue-600 text-white px-5 py-3 rounded-md hover:bg-blue-700">
               <img
                 src="https://img.icons8.com/ios-filled/24/ffffff/facebook-new.png"
                 alt="Facebook"

@@ -11,8 +11,6 @@ const OAuth2LoginCallback = () => {
     const token = params.get("token");
   
     if (token) {
-      console.log("Saving token...");
-      console.log("Token:", token);
       saveToken(token);
       setTimeout(() => {
         navigate("/");

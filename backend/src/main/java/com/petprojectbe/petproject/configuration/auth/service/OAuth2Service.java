@@ -39,4 +39,22 @@ public class OAuth2Service {
                 .build();
         return userDetailRepository.save(user);
     }
+
+    public User createUserOnAuth2LoginWithFacebook(OAuth2User oAuth2User, String provider){
+        String firstName = oAuth2User.getAttribute("name");
+        String lastName = oAuth2User.getAttribute("name");
+        String phoneNumber = oAuth2User.getAttribute("phone_number");
+        String facebookId = oAuth2User.getAttribute("id");
+        User user = User.builder()
+                .firstName(firstName)
+                .lastName(lastName)
+                .provider(provider)
+                .createOn(new Date())
+                .email("fb_user" + facebookId + "@facebook.local")
+                .phoneNumber(phoneNumber)
+                .enabled(true)
+                .authorities(authorityService.getUserAuthorities())
+                .build();
+        return userDetailRepository.save(user);
+    }
 }
