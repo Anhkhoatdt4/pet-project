@@ -1,0 +1,52 @@
+const [state, dispatch] = useReducer(reducer, initialState);
+state là giá trị trạng thái hiện tại.
+
+dispatch là một hàm được sử dụng để gửi "hành động" đến reducer để cập nhật trạng thái.
+
+3. values và dispatch:
+values là biến chứa trạng thái hiện tại sau khi useReducer đã được khởi tạo. Trong ví dụ này, values chứa các giá trị của form như userName, password, v.v.
+
+dispatch là một hàm mà bạn có thể gọi để gửi hành động (action) đến reducer nhằm thay đổi giá trị trong values.
+
+4. Reducer Function (formReducer):
+formReducer là hàm nhận 2 tham số: state và action. Dựa vào action, hàm này sẽ quyết định cập nhật trạng thái như thế nào.
+
+Ví dụ về formReducer:
+
+javascript
+Copy
+Edit
+function formReducer(state, action) {
+  switch (action.type) {
+    case 'SET_FIELD':
+      return {
+        ...state,
+        [action.field]: action.value,
+      };
+    default:
+      return state;
+  }
+}
+formReducer kiểm tra action.type và thực hiện thay đổi trạng thái dựa trên đó. Khi nhận được hành động có kiểu 'SET_FIELD', nó sẽ cập nhật trường tương ứng trong state.
+
+5. Cách thức sử dụng dispatch:
+dispatch là hàm mà bạn sẽ gọi để gửi hành động (action) đến reducer. Ví dụ, khi người dùng nhập dữ liệu vào trường userName, bạn sẽ gửi hành động đến reducer để cập nhật giá trị userName trong values.
+
+Ví dụ:
+
+javascript
+Copy
+Edit
+const handleOnChange = (e) => {
+  const { name, value } = e.target;
+  dispatch({ type: 'SET_FIELD', field: name, value });
+};
+Trong hàm handleOnChange, khi người dùng nhập vào một trường (input), hàm này sẽ gọi dispatch để gửi một hành động với kiểu 'SET_FIELD'. Hành động này chứa:
+
+type: xác định loại hành động (ở đây là 'SET_FIELD').
+
+field: tên của trường (ví dụ: userName).
+
+value: giá trị mới nhập vào trường đó.
+
+Khi dispatch được gọi, nó sẽ gửi hành động đến formReducer. Reducer sau đó sẽ xử lý hành động và cập nhật lại trạng thái.

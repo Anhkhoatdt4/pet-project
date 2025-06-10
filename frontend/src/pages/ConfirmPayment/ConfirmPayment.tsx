@@ -8,7 +8,7 @@ import { setLoading } from '~/store/features/common';
 
 const ConfirmPayment = () => {
     const location = useLocation();
-    const dispatch = useDispatch();
+    const dispatch : any = useDispatch();
     const [errorMessage,setErrorMessage] = useState(''); 
     const navigate = useNavigate();
     const isLoading = useSelector((state: { commonState: { loading: boolean } }) => state.commonState.loading);

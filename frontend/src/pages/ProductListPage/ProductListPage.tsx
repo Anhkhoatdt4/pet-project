@@ -40,6 +40,11 @@ const ProductListPage = ({categoryType} : {categoryType: string}) => {
       
     }, [category?.id, dispatch]);
 
+    const handleSizeChange = (selectedSizes: string[]) => {
+    // TODO: Thực hiện filter sản phẩm theo size hoặc cập nhật state filter
+    console.log('Selected sizes:', selectedSizes);
+    };
+
     return (
     <div>
         <div className='flex w-full p-5 gap-4'>
@@ -57,7 +62,11 @@ const ProductListPage = ({categoryType} : {categoryType: string}) => {
                     <hr></hr>
                     <ColorsFilter colors={categoryContent?.meta_data.colors || []} />
                     <hr />
-                    <SizeFilter sizes={categoryContent?.meta_data.sizes || []} multi={false} />
+                    <SizeFilter
+                        sizes={categoryContent?.meta_data.sizes || []}
+                        multi={false}
+                        onChange={handleSizeChange}
+                        />
                 </div>
             </div>
 
@@ -72,7 +81,7 @@ const ProductListPage = ({categoryType} : {categoryType: string}) => {
                        description={product.description}
                        price={product.price}
                        discount={product.discount}
-                       rating={product?.rating}
+                       rating={typeof product.rating === 'number' ? product.rating : 0}
                        thumbnail={product.thumbnail}
                        brand={product.brand}
                        slug={product.slug}

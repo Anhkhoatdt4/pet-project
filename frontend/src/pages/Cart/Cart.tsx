@@ -36,7 +36,7 @@ interface DeleteItemType {
 
 const Cart = () => {
   const cartItems = useSelector(selectCartItems);
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const navigate = useNavigate();
 
   const [couponCode, setCouponCode] = useState("");

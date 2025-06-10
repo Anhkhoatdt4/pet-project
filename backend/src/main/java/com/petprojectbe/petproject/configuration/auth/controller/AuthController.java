@@ -39,13 +39,17 @@ public class AuthController {
     public ResponseEntity<UserToken>login(@RequestBody LoginRequest loginRequest) {
         try {
             // unauthenticated(...) là một factory method để tạo một token chưa được xác thực, với isAuthenticated() == false.
+            // tạo một đối tượng Authentication chưa được xác thực với thông tin đăng nhập từ loginRequest. để xác thực người dùng.
             Authentication authentication = UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.getUserName(),loginRequest.getPassword());
             Authentication authenticationResponse = this.authenticationManager.authenticate(authentication);
             // Dòng này đưa authentication vào trong AuthenticationManager để thực hiện xác thực.
             System.out.println("debug0 "+authenticationResponse.isAuthenticated());
+            // tức là gọi đến SecurityConfig , nơi mà bạn đã cấu hình AuthenticationManager với DaoAuthenticationProvider và UserDetailsService.
             if (authenticationResponse.isAuthenticated()) {
+                // nếu xác thực thành công, thì authenticationResponse sẽ chứa thông tin người dùng đã đăng nhập.
+                // isAuthenticated() sẽ trả về true nếu xác thực thành công, và false nếu không thành công.
                 User user = (User) authenticationResponse.getPrincipal();
-                //  kiểm tra xem user có được "enabled" không
+                //  kiểm tra xem user có được "enabled" không , tức là người dùng đã được kích hoạt hay chưa.
                 if (!user.isEnabled()) {
                     return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
                 }

@@ -94,7 +94,8 @@ const ProductDetails = () => {
 
   const [selectedSize , setSelectedSize] = useState('');
   const [error, setError] = useState('');
-  const dispatch = useDispatch();
+  // Use 'any' to allow dispatching thunks
+  const dispatch: any = useDispatch();
   const addItemToCart = useCallback(() => {
     // console.log('Selected Size:', selectedSize);
     if (!selectedSize){
@@ -162,7 +163,7 @@ const ProductDetails = () => {
       <div className="w-full md:w-[50%] flex flex-col justify-start lg:mr-[240px] gap-2">
         <CumbTrail links={cumbTrail} />
         <p className="text-3xl pt-2">{product?.name}</p>
-        <StarRating rating={product.rating} />
+        <StarRating rating={typeof product.rating === 'number' ? product.rating : 0} />
         <div className="flex flex-col gap-1">
           <div className="flex gap-2 justify-start mt-1">
             <p className="text-[15px] font-bold">Select size</p>

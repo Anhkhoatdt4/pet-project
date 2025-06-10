@@ -1,0 +1,100 @@
+------------------------------------------
+@Bean
+public AuthenticationManager authenticationManager() {
+    DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+    provider.setUserDetailsService(customUserDetailsService);
+    provider.setPasswordEncoder(passwordEncoder());
+    return new ProviderManager(provider);
+}
+Khi người dùng đăng nhập:
+Spring tạo UsernamePasswordAuthenticationToken với username + password.
+
+DaoAuthenticationProvider.authenticate() được gọi.
+
+Gọi userDetailsService.loadUserByUsername(username)
+
+So sánh password người dùng nhập (plain text) với password trong DB (bằng PasswordEncoder.matches())
+
+Nếu đúng → Trả về Authentication có isAuthenticated=true.
+DaoAuthenticationProvider	Cầu nối giữa Spring Security và dữ liệu người dùng
+UserDetailsService	Truy xuất thông tin người dùng từ database
+PasswordEncoder	So sánh mật khẩu người dùng nhập với mật khẩu đã mã hóa trong DB
+
+SƠ ĐỒ 
+Client -> Username + Password
+     ↓
+AuthenticationManager
+     ↓
+DaoAuthenticationProvider
+     ↓
+UserDetailsService.loadUserByUsername()
+     ↓
+UserDetails (có password + roles)
+     ↓
+So sánh password
+     ↓
+Xác thực thành công → trả Authentication
+------------------------------------------
+
+
+----------------------------------------------------
+USERDETAILSERVICE 
+UserDetailsService liên quan gì tới Authentication?
+Khi bạn thực hiện đăng nhập, Spring sẽ chạy:
+
+Bạn gửi username + password lên.
+
+Spring tạo ra UsernamePasswordAuthenticationToken (unauthenticated).
+
+Gửi nó đến AuthenticationManager.
+
+AuthenticationManager gọi AuthenticationProvider.
+
+AuthenticationProvider gọi UserDetailsService.loadUserByUsername(username)
+
+Trả về UserDetails → so sánh password.
+
+Nếu đúng → trả về Authentication đã xác thực.
+
+
+----------------------------------------------------
+Một object Authentication (ví dụ: UsernamePasswordAuthenticationToken) có những thành phần quan trọng sau
+getPrincipal()	Đối tượng người dùng đã xác thực
+getCredentials()	Mật khẩu (thường bị ẩn sau xác thực)
+getAuthorities()	Danh sách quyền
+isAuthenticated()	Trạng thái xác thực
+getDetails()	Thông tin bổ sung
+---------------------------------------------------
+
+
+AuthenticationManager sử dụng một hoặc nhiều AuthenticationProvider để thực hiện xác thực.
+
+Bạn có thể hình dung:
+
+👉 AuthenticationManager = người điều phối
+👉 AuthenticationProvider = người thực hiện
+
+Khi bạn gọi authenticationManager.authenticate(...), manager sẽ lần lượt gọi các AuthenticationProvider để tìm ra cái nào hỗ trợ kiểu Authentication bạn truyền vào, rồi dùng nó để xác thực.
+
+------------------------------------------------------------------------
+
+
+String token =jwtTokenHelper.generateToken(user.getEmail());
+                 UserToken userToken= UserToken.builder().token(token).build();
+                 return new ResponseEntity<>(userToken,HttpStatus.OK);
+
+Vì sao cần UserToken?	Để gói token vào 1 object rõ ràng, dễ mở rộng, dễ dùng frontend
+Có bắt buộc không?	Không bắt buộc, nhưng nên làm
+Lợi ích?	Dễ maintain, tuân chuẩn REST, dễ thêm thông tin sau này
+
+------------------------------------------------------------------------
+ENTITY USER
+provider	Xác định loại đăng nhập	manual, google, facebook,...
+verificationCode	Mã xác minh tài khoản	Dùng trong đăng ký qua email
+enabled	Trạng thái tài khoản	Chỉ cho login khi đã xác minh email
+
+------------------------------------------------------------------------
+
+
+
+

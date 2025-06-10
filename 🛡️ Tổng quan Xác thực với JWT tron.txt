@@ -1,0 +1,80 @@
+🛡️ Tổng quan: Xác thực với JWT trong Spring Security
+Dòng chảy chính là:
+Filter đọc token ⟶ truyền cho AuthenticationManager ⟶ xử lý qua ProviderManager + JwtAuthenticationProvider ⟶ xác thực token thành công ⟶ set vào SecurityContextHolder
+
+🔢 Bước 1: Filter đọc token Bearer
+"The authentication Filter from Reading the Bearer Token passes a BearerTokenAuthenticationToken to the AuthenticationManager..."
+
+✅ Có một filter thường là BearerTokenAuthenticationFilter hoặc OncePerRequestFilter, nó sẽ:
+
+Lấy token từ header:
+
+makefile
+Copy
+Edit
+Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
+Tạo object BearerTokenAuthenticationToken chứa token đó
+
+Gửi object này đến AuthenticationManager để xử lý tiếp
+
+🔢 Bước 2: ProviderManager nhận yêu cầu xác thực
+"The ProviderManager is configured to use an AuthenticationProvider of type JwtAuthenticationProvider."
+
+✅ AuthenticationManager thực tế là ProviderManager, nó kiểm tra xem có AuthenticationProvider nào phù hợp xử lý BearerTokenAuthenticationToken không.
+
+➡️ Ở đây, nó dùng JwtAuthenticationProvider.
+
+🔢 Bước 3: JwtAuthenticationProvider dùng JwtDecoder để xác thực token
+"JwtAuthenticationProvider decodes, verifies, and validates the Jwt using a JwtDecoder."
+
+✅ JwtDecoder là thành phần chịu trách nhiệm:
+
+Giải mã token
+
+Xác thực chữ ký
+
+Kiểm tra các claims (hết hạn, issuer, v.v.)
+
+Ví dụ: nếu bạn dùng NimbusJwtDecoder, nó sẽ dùng public key hoặc secret để xác thực token.
+
+🔢 Bước 4: Chuyển JWT thành các quyền (GrantedAuthority)
+"JwtAuthenticationProvider then uses the JwtAuthenticationConverter to convert the Jwt into a Collection of granted authorities."
+
+✅ Sau khi token hợp lệ, JwtAuthenticationProvider sẽ:
+
+Truyền token vào JwtAuthenticationConverter
+
+Converter sẽ lấy các quyền (roles) từ claim (ví dụ claim "roles" hoặc "scope")
+
+Trả về danh sách GrantedAuthority, ví dụ:
+
+java
+Copy
+Edit
+[ROLE_USER, ROLE_ADMIN]
+🔢 Bước 5: Tạo JwtAuthenticationToken và set vào SecurityContextHolder
+"The returned JwtAuthenticationToken will be set on the SecurityContextHolder by the authentication Filter."
+
+✅ Sau khi xác thực xong:
+
+Trả về một JwtAuthenticationToken chứa:
+
+principal: chính là Jwt
+
+authorities: quyền lấy từ token
+
+Filter gán JwtAuthenticationToken vào SecurityContextHolder ➜ từ đây trở đi, trong code bạn có thể dùng:
+
+
+Bước	Diễn giải
+1	Filter đọc token từ header
+2	Tạo BearerTokenAuthenticationToken
+3	Gửi đến AuthenticationManager (ProviderManager)
+4	Gọi JwtAuthenticationProvider để xác thực
+5	Dùng JwtDecoder để decode/verify
+6	Dùng JwtAuthenticationConverter để tạo authorities
+7	Trả về JwtAuthenticationToken, gán vào SecurityContextHolder
+
+
+
+
